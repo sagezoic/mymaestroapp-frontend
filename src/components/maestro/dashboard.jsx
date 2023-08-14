@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import Sidebar from './sidebar';
 import Home from './home';
+import { Switch } from 'react-router-dom';
 
 function Dashboard({page}) {
   const [toggle, setToggle] = useState(true);
@@ -18,7 +19,9 @@ function Dashboard({page}) {
           </div>}
           {toggle && <div className='col-4 col-md-2'></div>}
           <div className="col">
-            <Home Toggle={Toggle}/>
+            <Switch>
+              <Home Toggle={Toggle}/>
+            </Switch>
           </div>
         </div>
     </div>

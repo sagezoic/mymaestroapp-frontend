@@ -12,7 +12,7 @@ import Calendar from './maestro/calendar';
 import Payments from './maestro/payments';
 import Profile from './maestro/profile';
 
-import Login from './login/login'
+import Login from './login'
 import Signup from './signup/signup'
 import NotFound from './notfound'
 import Navbar from './navbar'
@@ -35,8 +35,8 @@ function Landing() {
           <Route exact path="/maestros/" component={Maestros}/>
 
           <Route exact path="/maestro/dashboard"><Dashboard page={MaestroHome}/></Route>
-          <Route exact path="/maestro/dashboard/services"><Services/></Route>
-          <Route exact path="/maestro/dashboard/calendar" component={Dashboard} page={Calendar}/>
+          <Route exact path="/maestro/dashboard/services"><Services page={Services}/></Route>
+          <Route exact path="/maestro/dashboard/calendar" component={Dashboard}/>
           <Route exact path="/maestro/dashboard/payments" component={Dashboard} page={Payments}/>
           <Route exact path="/maestro/dashboard/profile" component={Dashboard} page={Profile}/>
 
