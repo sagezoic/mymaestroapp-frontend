@@ -1,0 +1,36 @@
+ *{
+    margin: 0;
+    padding: 0;
+  }
+
+  :{
+    background-color: rgba(255,255,255,0.87);
+  }
+
+  .list-group a:hover{
+    background-color: #263951;
+    color: white;
+    cursor: pointer;
+  }
+
+  .color{
+    background-color: #4B9CD3;
+  }
+
+  .btn-custom {
+    border: 2px solid black;
+    border-radius: 50px; /* Adjust the value to control the roundness of the button */
+    background-color: transparent;
+    color: black;
+    transition: none; /* Disable hover effect transition */
+    padding: 10px 20px;
+  }
+
+  .btn-custom-sq {
+    border: 2px solid black;
+    border-radius: 10px; /* Adjust the value to control the roundness of the button */
+    background-color: transparent;
+    color: black;
+    transition: none; /* Disable hover effect transition */
+    padding: 10px 20px;
+  }
