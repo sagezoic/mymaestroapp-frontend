@@ -30,7 +30,7 @@ function Dashboard() {
               <Route exact path="/profile" component={Dashboard} page={Profile}/>
               <Route path="/"><Home Toggle={Toggle}/></Route>
             </Switch>
-  </div>*/}
+          </div>*/}
           {toggle && (
           <div className='col-4 col-md-2 bg-white vh-100'>
             <Sidebar />
