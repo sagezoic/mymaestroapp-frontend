@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {Link} from 'react-router-dom';
 
-function Home() {
+function Navbar() {
 
   return (
     <nav class="navbar navbar-expand-lg navbar-dark" style={{backgroundColor:"#232F3E", color:"#ffffff"}}>
@@ -16,7 +16,7 @@ function Home() {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 
                 <form class="d-flex align-items-center" role="search">
-                    <input class="form-control me-2 col-md-8" type="search" placeholder="Find the maestro" aria-label="Search"/>
+                    <input class="form-control me-2 col-md-12" type="search" placeholder="Find the maestro" aria-label="Search"/>
                     <button class="btn btn-outline-info" type="submit" style={{color:"#ffffff"}}>Search</button>
                 </form>
                 
@@ -25,16 +25,15 @@ function Home() {
                         <Link to="/" class="nav-link active" aria-current="page">Home</Link>
                     </li>
                     <li class="nav-item">
-                        <Link to="/explorer/home" class="nav-link">ExplorerHome</Link>
-                    </li>
-                    <li class="nav-item">
-                        <Link to="/maestro/home" class="nav-link">MaestroHome</Link>
+                        <Link to="/explorer/feed" class="nav-link">Feed</Link>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Dashboard
                         </a>
                         <ul class="dropdown-menu">
+                            <li><Link to="/maestro/dashboard/home" class="dropdown-item">Home</Link></li>
+                            <li><hr class="dropdown-divider"/></li>
                             <li><Link to="/maestro/dashboard/services" class="dropdown-item">Services</Link></li>
                             <li><hr class="dropdown-divider"/></li>
                             <li><Link to="/maestro/dashboard/calendar" class="dropdown-item">Calendar</Link></li>
@@ -64,11 +63,11 @@ function Home() {
                     </li>
                 </ul>
                 <div className="d-flex">
-                    <button class="btn btn-outline-success me-2" style={{color:"#ffffff"}}>
+                    <button class="btn btn-outline-info ms-2 me-4" style={{color:"#ffffff"}}>
                         <Link to="/login" class="nav-link">Login</Link>
                     </button>
             
-                    <button class="btn btn-outline-danger">
+                    <button class="btn btn-outline-info">
                         <Link to="/signup" class="nav-link" style={{color:"#ffffff"}}>Signup</Link>
                     </button>
                 </div>
@@ -78,4 +77,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Navbar

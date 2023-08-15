@@ -3,7 +3,7 @@ import React from 'react'
 function NavDashboard({Toggle}) {
   return (
     <nav className="navbar navbar-expand-sm navbar-light bg-white">
-        <i className="navbar-brand bi bi-justify-left fs-4" onClick={Toggle}></i>
+        <i className="navbar-brand bi bi-justify-left fs-4" onClick={Toggle} style={{cursor:"pointer"}}></i>
         <button className="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
             aria-expanded="false" aria-label="Toggle navigation"><i className='bi bi-justify'></i></button>
         <div className="collapse navbar-collapse" id="collapsibleNavId">

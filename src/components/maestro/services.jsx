@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import '../../css/style.css'
 import ServiceCard from './servicecard'
-
-function Services() {
+import NavDashboard from './navdashboard'
+function Services({Toggle}) {
 
   return (
-    <div className='main-container'>
+    <div className='px-3'>
+        <NavDashboard Toggle={Toggle}/>
         <div className='container-fluid'>
           <div>
             <h2 className='fs-2'>Services</h2>
