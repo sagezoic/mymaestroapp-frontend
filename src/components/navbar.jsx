@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function Navbar() {
-    const isLoggedIn = true;
+function Navbar({isLoggedIn}) {
+    isLoggedIn = false;
 
     return (
         <nav class='navbar navbar-expand-lg navbar-dark' style={{ backgroundColor: '#232F3E', color: '#ffffff' }}>
@@ -136,7 +136,6 @@ function Navbar() {
                             </ul>
                         </li>
                     </ul>
-                    _
                     {!isLoggedIn && (
                         <div className='d-flex'>
                             <button class='btn btn-outline-info ms-2 me-4' style={{ color: '#ffffff' }}>

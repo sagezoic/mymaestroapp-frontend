@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-import NavDashboard from './navdashboard'
 
-function Home({Toggle}) {
-
+function Home() {
+  
   return (
     <div className='px-3'>
-        <NavDashboard Toggle={Toggle}/>
         
         <div className="container-fluid">
           <div className="row g-3 my-2">
