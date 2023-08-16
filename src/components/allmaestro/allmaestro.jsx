@@ -1,7 +1,7 @@
 import React from 'react'
 import MaestroCard from './maestrocard'
 
-function Maestros() {
+function AllMaestro() {
   return (
     <div className="container">
         <div className="row container-fluid row-cols-1 row-cols-md-3">
@@ -28,4 +28,4 @@ function Maestros() {
   )
 }
 
-export default Maestros
+export default AllMaestro

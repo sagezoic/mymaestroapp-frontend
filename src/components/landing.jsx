@@ -2,15 +2,10 @@ import React, { useState } from 'react';
 import {Switch ,Route} from 'react-router-dom';
 
 import { MaestroRoutes } from '../routes/maestroRoutes';
+import { ExplorerRoutes } from '../routes/explorerRoutes';
+import { CommonRoutes } from '../routes/commonRoutes';
 
 import Home from './home'
-import Maestros from './maestros';
-import Feed from './feed'
-
-import ExplorerHome from './explorer/home'
-
-import MaestroHome from './maestro/home'
-import Dashboard from './maestro/dashboard'
 
 import Login from './login'
 import Signup from './signup/signup'
@@ -45,16 +40,20 @@ function Landing() {
         <br />
         <Switch>
           <Route exact path="/" component={Home}/>
-          <Route exact path="/explorer/home" component={ExplorerHome}/>
-          <Route exact path="/explorer/feed" component={Feed}/>
-
-          <Route exact path="/maestros/" component={Maestros}/>
 
           <Route exact path="/login" component={Login}/>
           <Route exact path="/signup" component={Signup}/>
           <Route exact path="/test" component={Test}/>
           {/*<Route path={MaestroRoutes.path}><Dashboard/></Route>*/}
           {MaestroRoutes.map((route, i) => (
+            <RouteWithSubRoutes key={i} {...route} />
+          ))}
+
+          {ExplorerRoutes.map((route, i) => (
+            <RouteWithSubRoutes key={i} {...route} />
+          ))}
+
+          {CommonRoutes.map((route, i) => (
             <RouteWithSubRoutes key={i} {...route} />
           ))}
 
