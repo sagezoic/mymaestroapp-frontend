@@ -34,3 +34,11 @@
     transition: none; /* Disable hover effect transition */
     padding: 10px 20px;
   }
+
+  .btn-toolbar {
+    margin-top: 10px;
+  }
+  
+  .btn-check {
+    margin-right: 10px;
+  }
