@@ -13,35 +13,29 @@ function Sidebar() {
             </div>
             <hr className='text-dark' />
             <div className='list-group list-group-flush'>
-                <Link to='/maestro/dashboard' className='list-group-item py-2 my-1'>
+                <Link to='/explorer/dashboard' className='list-group-item py-2 my-1'>
                     <i className='bi bi-house fs-5 me-2'></i>
                     <span>Home</span>
                 </Link>
-                <Link to='/maestro/dashboard/bookings' className='list-group-item py-2 my-1'>
+                <Link to='/explorer/dashboard/bookings' className='list-group-item py-2 my-1'>
                     <i className='bi bi-telephone fs-5 me-3'></i>
                     <span>Bookings</span>
                 </Link>
-                <Link to='/maestro/dashboard/prioritydm' className='list-group-item py-2 my-1'>
+                <Link to='/explorer/dashboard/prioritydm' className='list-group-item py-2 my-1'>
                     <i className='bi bi-chat-dots fs-5 me-3'></i>
                     <span>Priority DM</span>
                 </Link>
-                <Link to='/maestro/dashboard/services' className='list-group-item py-2 my-1'>
-                    {/* <a > */}
-                    <i className='bi bi-card-list fs-5 me-3'></i>
-                    <span>Services</span>
-                    {/* </a> */}
-                </Link>
-                <Link to='/maestro/dashboard/calendar' className='list-group-item py-2 my-1'>
+                <Link to='/explorer/dashboard/calendar' className='list-group-item py-2 my-1'>
                     {/* <a > */}
                     <i className='bi bi-card-list fs-5 me-3'></i>
                     <span>Calendar</span>
                     {/* </a> */}
                 </Link>
-                <Link to='/maestro/dashboard/payments' className='list-group-item py-2 my-1'>
+                <Link to='/explorer/dashboard/payments' className='list-group-item py-2 my-1'>
                     <i className='bi bi-wallet fs-5 me-3'></i>
                     <span>Payments</span>
                 </Link>
-                <Link to='/maestro/dashboard/profile' className='list-group-item py-2 my-1'>
+                <Link to='/explorer/dashboard/profile' className='list-group-item py-2 my-1'>
                     <i className='bi bi-person fs-5 me-3'></i>
                     <span>Profile</span>
                 </Link>
@@ -50,4 +44,4 @@ function Sidebar() {
     );
 }
 
-export default Sidebar;
+export default Sidebar

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function ServiceCard() {
   return (
@@ -16,8 +17,8 @@ function ServiceCard() {
             </div>
             <p class="card-text mt-1">This is the first service, you are giving!</p>
             <div className='d-flex'>
-                <i className='btn btn-light bi bi-upload me-4' style={{fontSize:"25px", cursor:"pointer"}}></i>
-                <button class="btn btn-flat btn-block btn-light">Edit</button>
+            <Link to='/maestro/dashboard/shareservice'><i className='btn btn-light bi bi-upload me-4' style={{fontSize:"25px", cursor:"pointer"}}></i></Link>
+                <Link to='/maestro/dashboard/editservice'><button class="btn btn-flat btn-block btn-light">Edit</button></Link>
                 <div className='ms-auto'>
                     <i className='btn btn-light bi bi-activity me-2 fs-3'></i>
                 </div>

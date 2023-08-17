@@ -3,13 +3,16 @@ import {Switch, Route} from 'react-router-dom';
 
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import Sidebar from './sidebar';
+import NavDashboard from './navdashboard'
+
 import Home from './home';
 import Services from './services';
 import Calendar from './calendar';
 import Payments from './payments';
 import Profile from './profile';
+import {RouteWithSubRoutes} from '../landing';
 
-function Dashboard() {
+function Dashboard({routes}) {
   const [toggle, setToggle] = useState(true);
   const Toggle = ()=>{
                         setToggle(!toggle)
@@ -30,7 +33,7 @@ function Dashboard() {
               <Route exact path="/profile" component={Dashboard} page={Profile}/>
               <Route path="/"><Home Toggle={Toggle}/></Route>
             </Switch>
-  </div>*/}
+          </div>*/}
           {toggle && (
           <div className='col-4 col-md-2 bg-white vh-100'>
             <Sidebar />
@@ -38,13 +41,20 @@ function Dashboard() {
         )}
         
         <div className='col'>
+          <NavDashboard Toggle={Toggle}/>
           <Switch>
-            <Route path="/maestro/dashboard/services"><Services Toggle={Toggle}/></Route>
+
+            {/*<Route path="/maestro/dashboard/services"><Services Toggle={Toggle}/></Route>
             <Route path='/maestro/dashboard/calendar' component={Calendar} />
             <Route path='/maestro/dashboard/payments' component={Payments} />
             <Route path='/maestro/dashboard/profile' component={Profile} />
             {/*<Route exact path="" render={(props) => <Home {...props} Toggle={Toggle} />} />*/}
-            <Route path=""><Home Toggle={Toggle}/></Route>
+            {/*<Route path=""><Home Toggle={Toggle}/></Route>*/}
+
+            {routes.map((route, i) => (
+              <RouteWithSubRoutes key={i} {...route}/>
+            ))}
+    
           </Switch>
         </div>
     </div>
