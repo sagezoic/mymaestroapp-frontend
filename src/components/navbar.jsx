@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function Navbar({isLoggedIn}) {
-    isLoggedIn = true;
+function Navbar({Logout,isLoggedIn}) {
 
     return (
         <nav class='navbar navbar-expand-lg navbar-dark' style={{ backgroundColor: '#232F3E', color: '#ffffff' }}>
@@ -36,12 +35,13 @@ function Navbar({isLoggedIn}) {
                             </Link>
                         </li>
                         )}
-                        <li class='nav-item'>
+                        {isLoggedIn && (<li class='nav-item'>
                             <Link to='/explorer/feed' class='nav-link'>
                                 Feed
                             </Link>
-                        </li>
-                        <li class='nav-item dropdown'>
+                        </li>)}
+
+                        {isLoggedIn && (<li class='nav-item dropdown'>
                             <a class='nav-link dropdown-toggle' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
                                 Dashboard
                             </a>
@@ -84,7 +84,8 @@ function Navbar({isLoggedIn}) {
                                     </Link>
                                 </li>
                             </ul>
-                        </li>
+                        </li>)}
+                        
                         <li class='nav-item dropdown'>
                             <Link to='/allmaestro' class='nav-link dropdown-toggle' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
                                 Maestros
@@ -137,17 +138,17 @@ function Navbar({isLoggedIn}) {
                                 </li>
                             </ul>
                         </li>
-                        <li class='nav-item'>
+                        {isLoggedIn && (<li class='nav-item'>
                             <Link to='/maestro/dashboard/prioritydm' class='nav-link'>
                                 <i class="bi bi-chat-dots" style={{color:'#ffffff', fontSize:'1.2rem'}}></i>
                             </Link>
-                        </li>
-                        <li class='nav-item'>
+                        </li>)}
+                        {isLoggedIn && (<li class='nav-item'>
                             <Link to='#' class='nav-link'>
                                 <i class="bi bi-bell" style={{color:'#ffffff', fontSize:'1.2rem'}}></i>
                             </Link>
-                        </li>
-                        <li class="nav-item dropdown mt-1 mr-3 ml-3">
+                        </li>)}
+                        {isLoggedIn && (<li class="nav-item dropdown mt-1 mr-3 ml-3">
                             <a
                                 class="nav-link dropdown-toggle"
                                 href="#"
@@ -169,9 +170,9 @@ function Navbar({isLoggedIn}) {
                             <ul class="dropdown-menu dropdown-menu-end " aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
                                 <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                                <li onClick={Logout}><a class="dropdown-item" href=''>Logout</a></li>
                             </ul>
-                            </li>
+                            </li>)}
                     </ul>
                     {!isLoggedIn && (
                         <div className='d-flex'>

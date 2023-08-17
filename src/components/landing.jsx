@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Switch ,Route} from 'react-router-dom';
+import {Switch ,Route, useHistory } from 'react-router-dom';
 
 import { MaestroRoutes } from '../routes/maestroRoutes';
 import { ExplorerRoutes } from '../routes/explorerRoutes';
@@ -34,13 +34,21 @@ function RouteWithSubRoutes(route) {
 
 function Landing() {
 
+  let history = useHistory();
   const [username, setUsername] = useState([]);
-  let routes = MaestroRoutes;
-  debugger;
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn"));
+  var logout =()=>{
+    //set session storage
+    window.localStorage.setItem("isLoggedIn",false);
+    setIsLoggedIn(localStorage.getItem("isLoggedIn"));
+    window.localStorage.removeItem("email");
+    window.localStorage.removeItem("jwt");
+    history.push("/")
+  }
 
   return (
     <div className='main-container'>
-        <Navbar></Navbar>
+        <Navbar Logout={logout} isLoggedIn={isLoggedIn}></Navbar>
         <br />
         <Switch>
           <Route exact path="/" component={Home}/>
