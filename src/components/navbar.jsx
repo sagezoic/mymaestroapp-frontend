@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Navbar({isLoggedIn}) {
-    isLoggedIn = false;
+    isLoggedIn = true;
 
     return (
         <nav class='navbar navbar-expand-lg navbar-dark' style={{ backgroundColor: '#232F3E', color: '#ffffff' }}>
@@ -28,12 +28,14 @@ function Navbar({isLoggedIn}) {
                             Search
                         </button>
                     </form>
-                    <ul class='navbar-nav ms-auto mb-2 mb-lg-0'>
-                        <li class='nav-item'>
+                    <ul class='navbar-nav ms-auto align-items-center mb-2 mb-lg-0'>
+                        
+                        {!isLoggedIn && (<li class='nav-item'>
                             <Link to='/' class='nav-link active' aria-current='page'>
                                 Home
                             </Link>
                         </li>
+                        )}
                         <li class='nav-item'>
                             <Link to='/explorer/feed' class='nav-link'>
                                 Feed
@@ -84,71 +86,106 @@ function Navbar({isLoggedIn}) {
                             </ul>
                         </li>
                         <li class='nav-item dropdown'>
-                            <a class='nav-link dropdown-toggle' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
-                                For Creators
-                            </a>
+                            <Link to='/allmaestro' class='nav-link dropdown-toggle' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                Maestros
+                            </Link>
                             <ul class='dropdown-menu'>
                                 <li>
-                                    <a class='dropdown-item' href='#'>
+                                    <Link to='/allmaestro' class='dropdown-item' href='#'>
+                                        All
+                                    </Link>
+                                </li>
+                                <li>
+                                    <hr class='dropdown-divider' />
+                                </li>
+                                <li>
+                                    <Link to='/softeng' class='dropdown-item' href='#'>
                                         Software Engineers
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <hr class='dropdown-divider' />
                                 </li>
                                 <li>
-                                    <a class='dropdown-item' href='#'>
+                                    <Link to='/designers' class='dropdown-item' href='#'>
                                         Designers
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <hr class='dropdown-divider' />
                                 </li>
                                 <li>
-                                    <a class='dropdown-item' href='#'>
+                                    <Link to='/mentors' class='dropdown-item' href='#'>
                                         Mentors
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <hr class='dropdown-divider' />
                                 </li>
                                 <li>
-                                    <a class='dropdown-item' href='#'>
+                                    <Link to='/creators' class='dropdown-item' href='#'>
                                         Creators
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <hr class='dropdown-divider' />
                                 </li>
                                 <li>
-                                    <a class='dropdown-item' href='#'>
+                                    <Link to='/mentalhealth' class='dropdown-item' href='#'>
                                         Mental Health Experts
-                                    </a>
-                                </li>
-                                <li>
-                                    <hr class='dropdown-divider' />
-                                </li>
-                                <li>
-                                    <a class='dropdown-item' href='#'>
-                                        Something else here
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
                         </li>
+                        <li class='nav-item'>
+                            <Link to='/maestro/dashboard/prioritydm' class='nav-link'>
+                                <i class="bi bi-chat-dots" style={{color:'#ffffff', fontSize:'1.2rem'}}></i>
+                            </Link>
+                        </li>
+                        <li class='nav-item'>
+                            <Link to='#' class='nav-link'>
+                                <i class="bi bi-bell" style={{color:'#ffffff', fontSize:'1.2rem'}}></i>
+                            </Link>
+                        </li>
+                        <li class="nav-item dropdown mt-1 mr-3 ml-3">
+                            <a
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdownMenuLink"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            >
+                                <img
+                                src={require('../images/users/user1/dp.jpg')}
+                                class="rounded-circle"
+                                width="40"
+                                height="40"
+                                style={{marginTop: '-3px'}}
+                                alt="User Avatar"
+                                />
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end " aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                            </li>
                     </ul>
                     {!isLoggedIn && (
                         <div className='d-flex'>
-                            <button class='btn btn-outline-info ms-2 me-4' style={{ color: '#ffffff' }}>
-                                <Link to='/login' class='nav-link'>
+                            <Link to='/login' class='nav-link'>
+                                <button class='btn btn-outline-info ms-2 me-4' style={{ color: '#ffffff' }}>
                                     Login
-                                </Link>
-                            </button>
+                                </button>
+                            </Link>
 
-                            <button class='btn btn-outline-info'>
-                                <Link to='/signup' class='nav-link' style={{ color: '#ffffff' }}>
+                            <Link to='/signup' class='nav-link'>
+                                <button class='btn btn-outline-info' style={{ color: '#ffffff' }}>
                                     Signup
-                                </Link>
-                            </button>
+                                </button>
+                            </Link>
                         </div>
                     )}
                 </div>
