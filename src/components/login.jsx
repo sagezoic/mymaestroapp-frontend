@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 
-function Login() {
+function Login({ isLoggedIn, handleLogin }) {
 
     var history = useHistory();
 
@@ -35,7 +35,8 @@ function Login() {
                         window.localStorage.setItem("isLoggedIn", "true");
                         window.localStorage.setItem("email", credentials.email);
                         window.localStorage.setItem("jwt", result.jwt);
-                        //window.localStroage.setItem("jwt",result.jwt);
+                        // Call the handleLogin function passed from the parent
+                        handleLogin();
                         //navigate to somewhere
                         history.push("/maestro/feed")
                     }

@@ -36,13 +36,23 @@ function Landing() {
 
   let history = useHistory();
   const [username, setUsername] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn"));
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  //callback function to change the state loggedin from child login component
+  const handleLogin = () => {
+    // Update the isLoggedIn state when the user logs in
+    setIsLoggedIn(true);
+  };
+  
   var logout =()=>{
     //set session storage
     window.localStorage.setItem("isLoggedIn",false);
-    setIsLoggedIn(localStorage.getItem("isLoggedIn"));
     window.localStorage.removeItem("email");
     window.localStorage.removeItem("jwt");
+
+    debugger;
+    //change the login state to false
+    setIsLoggedIn(localStorage.getItem("isLoggedIn"));
     history.push("/")
   }
 
@@ -53,12 +63,13 @@ function Landing() {
         <Switch>
           <Route exact path="/" component={Home}/>
 
-          <Route exact path="/login" component={Login}/>
+          <Route exact path="/login"><Login isLoggedIn={isLoggedIn} handleLogin={handleLogin} /></Route>
           <Route exact path="/signup" component={Signup}/>
           <Route exact path="/signup/otp" component={Otp}/>
           <Route exact path="/signup/aftersignup1" component={Aftersignup1}/>
           <Route exact path="/signup/aftersignup2" component={Aftersignup2}/>
           <Route exact path="/signup/aftersignup3" component={Aftersignup3}/>
+
           <Route exact path="/test" component={Test}/>
           {/*<Route path={MaestroRoutes.path}><Dashboard/></Route>*/}
           {MaestroRoutes.map((route, i) => (
