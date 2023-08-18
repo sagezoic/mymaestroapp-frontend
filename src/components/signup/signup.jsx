@@ -14,6 +14,10 @@ function Signup() {
 
   const [message, setmessage] = useState("");
 
+  const [passwordError, setPasswordError] = useState('');
+
+  const [confirmPasswordError, setConfirmPasswordError] = useState('');
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -27,7 +31,30 @@ function Signup() {
     }, 5000);
   }
 
-  const handleSignup = () => {
+  const handlePasswordChange = (e) => {
+    const newPassword = e.target.value;
+    setFormData((prevData) => ({ ...prevData, password: newPassword }));
+    setPasswordError('');
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    const newConfirmPassword = e.target.value;
+    setFormData((prevData) => ({
+      ...prevData,
+      confirmPassword: newConfirmPassword,
+    }));
+    setConfirmPasswordError('');
+  };
+
+  const handleSignup = (e) => {
+
+    e.preventDefault();
+
+    if (formData.password !== formData.confirmPassword) {
+      setConfirmPasswordError('Passwords do not match');
+      return;
+    }
+
     var helper = new XMLHttpRequest();
       helper.onreadystatechange = ()=>{
           if(helper.readyState ==4 && 
@@ -116,32 +143,34 @@ function Signup() {
                       <label htmlFor="email" className="form-label">Email</label>
                       <input type="email" className="form-control" id="email" 
                       name="email" placeholder="Email" value={formData.email}
-                      onChange={handleInputChange}/>
+                      onChange={handleInputChange} required/>
                     </div>
                     <div className="mb-3">
                       <label htmlFor="username" className="form-label">Username</label>
                       <input type="text" className="form-control" id="username" 
                       name="username" placeholder="Username" value={formData.username}
-                      onChange={handleInputChange}/>
+                      onChange={handleInputChange} required/>
                     </div>
                     <div className="mb-3">
                       <label htmlFor="contact" className="form-label">Contact Number</label>
                       <input type="tel" className="form-control" id="contact" 
                       name="contactNumber" placeholder="Contact Number" value={formData.contactNumber}
-                      onChange={handleInputChange}/>
+                      onChange={handleInputChange} required/>
                     </div>
                     <div className="mb-3">
                       <label htmlFor="password" className="form-label">Password</label>
                       <input type="password" className="form-control" id="password" 
                       name="password" placeholder="Password" value={formData.password}
-                      onChange={handleInputChange}/>
+                      onChange={handlePasswordChange} required/>
                     </div>
                     <div className="mb-3">
                       <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
                       <input type="password" className="form-control" id="confirmPassword" 
                       name="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword}
-                      onChange={handleInputChange}/>
+                      onChange={handleConfirmPasswordChange} required/>
                     </div>
+                    {passwordError && <p style={{color:"red"}}>{passwordError}</p>}
+                    {confirmPasswordError && <p style={{color:"red"}}>{confirmPasswordError}</p>}
                     <button type="submit" className="btn btn-primary w-100">Sign Up</button>
                     <div className="text-center mt-3">
                       <p>Or continue with:</p>
@@ -149,9 +178,9 @@ function Signup() {
                       <a href="#" className="btn btn-icon mx-1"><i className="fab fa-twitter fa-2x" style={{color: "#55acee"}} ></i></a>
                       <a href="#" className="btn btn-icon mx-1"><i className="fab fa-linkedin-in fa-2x" style={{color :"#0082ca"}}></i></a>
                     </div>
-                    <div className='alert alert-danger'>
+                    {false && (<div className='alert alert-danger'>
                       {message}
-                    </div>
+                    </div>)}
                   </form>
                 </div>
               </div>
