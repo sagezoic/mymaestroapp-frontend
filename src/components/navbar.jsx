@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function Navbar({isLoggedIn}) {
-    isLoggedIn = false;
-
+function Navbar({Logout, isLoggedIn}) {
+    debugger;
     return (
-        <nav class='navbar navbar-expand-lg navbar-dark' style={{ backgroundColor: '#232F3E', color: '#ffffff' }}>
-            <div class='container-fluid'>
-                <Link to='/' class='navbar-brand'>
+        <nav className='navbar navbar-expand-lg navbar-dark' style={{ backgroundColor: '#232F3E', color: '#ffffff' }}>
+            <div className='container-fluid'>
+                <Link to='/' className='navbar-brand'>
                     <img src={require('../images/common/logo.png')} alt='my-maestro-logo' width='30' height='30' />
                 </Link>
                 <button
-                    class='navbar-toggler'
+                    className='navbar-toggler'
                     type='button'
                     data-bs-toggle='collapse'
                     data-bs-target='#navbarSupportedContent'
@@ -19,136 +18,175 @@ function Navbar({isLoggedIn}) {
                     aria-expanded='false'
                     aria-label='Toggle navigation'
                 >
-                    <span class='navbar-toggler-icon'></span>
+                    <span className='navbar-toggler-icon'></span>
                 </button>
-                <div class='collapse navbar-collapse' id='navbarSupportedContent'>
-                    <form class='d-flex align-items-center' role='search'>
-                        <input class='form-control me-2 col-md-12' type='search' placeholder='Find the maestro' aria-label='Search' />
-                        <button class='btn btn-outline-info' type='submit' style={{ color: '#ffffff' }}>
+                <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+                    <form className='d-flex align-items-center' role='search'>
+                        <input className='form-control me-2 col-md-12' type='search' placeholder='Find the maestro' aria-label='Search' />
+                        <button className='btn btn-outline-info' type='submit' style={{ color: '#ffffff' }}>
                             Search
                         </button>
                     </form>
-                    <ul class='navbar-nav ms-auto mb-2 mb-lg-0'>
-                        <li class='nav-item'>
-                            <Link to='/' class='nav-link active' aria-current='page'>
+                    <ul className='navbar-nav ms-auto align-items-center mb-2 mb-lg-0'>
+                        
+                        {!isLoggedIn && (<li className='nav-item'>
+                            <Link to='/' className='nav-link active' aria-current='page'>
                                 Home
                             </Link>
                         </li>
-                        <li class='nav-item'>
-                            <Link to='/explorer/feed' class='nav-link'>
+                        )}
+                        {isLoggedIn && (<li className='nav-item'>
+                            <Link to='/explorer/feed' className='nav-link'>
                                 Feed
                             </Link>
-                        </li>
-                        <li class='nav-item dropdown'>
-                            <a class='nav-link dropdown-toggle' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                        </li>)}
+
+                        {isLoggedIn && (<li className='nav-item dropdown'>
+                            <a className='nav-link dropdown-toggle' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
                                 Dashboard
                             </a>
-                            <ul class='dropdown-menu'>
+                            <ul className='dropdown-menu'>
                                 <li>
-                                    <Link to='/maestro/dashboard/home' class='dropdown-item'>
+                                    <Link to='/maestro/dashboard/home' className='dropdown-item'>
                                         Home
                                     </Link>
                                 </li>
                                 <li>
-                                    <hr class='dropdown-divider' />
+                                    <hr className='dropdown-divider' />
                                 </li>
                                 <li>
-                                    <Link to='/maestro/dashboard/services' class='dropdown-item'>
+                                    <Link to='/maestro/dashboard/services' className='dropdown-item'>
                                         Services
                                     </Link>
                                 </li>
                                 <li>
-                                    <hr class='dropdown-divider' />
+                                    <hr className='dropdown-divider' />
                                 </li>
                                 <li>
-                                    <Link to='/maestro/dashboard/calendar' class='dropdown-item'>
+                                    <Link to='/maestro/dashboard/calendar' className='dropdown-item'>
                                         Calendar
                                     </Link>
                                 </li>
                                 <li>
-                                    <hr class='dropdown-divider' />
+                                    <hr className='dropdown-divider' />
                                 </li>
                                 <li>
-                                    <Link to='/maestro/dashboard/payments' class='dropdown-item'>
+                                    <Link to='/maestro/dashboard/payments' className='dropdown-item'>
                                         Payments
                                     </Link>
                                 </li>
                                 <li>
-                                    <hr class='dropdown-divider' />
+                                    <hr className='dropdown-divider' />
                                 </li>
                                 <li>
-                                    <Link to='/maestro/dashboard/profile' class='dropdown-item'>
+                                    <Link to='/maestro/dashboard/profile' className='dropdown-item'>
                                         Profile
                                     </Link>
                                 </li>
                             </ul>
-                        </li>
-                        <li class='nav-item dropdown'>
-                            <a class='nav-link dropdown-toggle' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
-                                For Creators
-                            </a>
-                            <ul class='dropdown-menu'>
+                        </li>)}
+                        
+                        <li className='nav-item dropdown'>
+                            <Link to='/allmaestro' className='nav-link dropdown-toggle' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                Maestros
+                            </Link>
+                            <ul className='dropdown-menu'>
                                 <li>
-                                    <a class='dropdown-item' href='#'>
+                                    <Link to='/allmaestro' className='dropdown-item' href='#'>
+                                        All
+                                    </Link>
+                                </li>
+                                <li>
+                                    <hr className='dropdown-divider' />
+                                </li>
+                                <li>
+                                    <Link to='/softeng' className='dropdown-item' href='#'>
                                         Software Engineers
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <hr class='dropdown-divider' />
+                                    <hr className='dropdown-divider' />
                                 </li>
                                 <li>
-                                    <a class='dropdown-item' href='#'>
+                                    <Link to='/designers' className='dropdown-item' href='#'>
                                         Designers
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <hr class='dropdown-divider' />
+                                    <hr className='dropdown-divider' />
                                 </li>
                                 <li>
-                                    <a class='dropdown-item' href='#'>
+                                    <Link to='/mentors' className='dropdown-item' href='#'>
                                         Mentors
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <hr class='dropdown-divider' />
+                                    <hr className='dropdown-divider' />
                                 </li>
                                 <li>
-                                    <a class='dropdown-item' href='#'>
+                                    <Link to='/creators' className='dropdown-item' href='#'>
                                         Creators
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <hr class='dropdown-divider' />
+                                    <hr className='dropdown-divider' />
                                 </li>
                                 <li>
-                                    <a class='dropdown-item' href='#'>
+                                    <Link to='/mentalhealth' className='dropdown-item' href='#'>
                                         Mental Health Experts
-                                    </a>
-                                </li>
-                                <li>
-                                    <hr class='dropdown-divider' />
-                                </li>
-                                <li>
-                                    <a class='dropdown-item' href='#'>
-                                        Something else here
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
                         </li>
+                        {isLoggedIn && (<li className='nav-item'>
+                            <Link to='/maestro/dashboard/prioritydm' className='nav-link'>
+                                <i className="bi bi-chat-dots" style={{color:'#ffffff', fontSize:'1.2rem'}}></i>
+                            </Link>
+                        </li>)}
+                        {isLoggedIn && (<li className='nav-item'>
+                            <Link to='#' className='nav-link'>
+                                <i className="bi bi-bell" style={{color:'#ffffff', fontSize:'1.2rem'}}></i>
+                            </Link>
+                        </li>)}
+                        {isLoggedIn && (<li className="nav-item dropdown mt-1 mr-3 ml-3">
+                            <a
+                                className="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdownMenuLink"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            >
+                                <img
+                                src={require('../images/users/user1/dp.jpg')}
+                                className="rounded-circle"
+                                width="40"
+                                height="40"
+                                style={{marginTop: '-3px'}}
+                                alt="User Avatar"
+                                />
+                            </a>
+                            <ul className="dropdown-menu dropdown-menu-end " aria-labelledby="navbarDropdownMenuLink">
+                                <li><a className="dropdown-item" href="#">Profile</a></li>
+                                <li><a className="dropdown-item" href="#">Settings</a></li>
+                                <li onClick={Logout}><a className="dropdown-item" href=''>Logout</a></li>
+                            </ul>
+                            </li>)}
                     </ul>
                     {!isLoggedIn && (
                         <div className='d-flex'>
-                            <button class='btn btn-outline-info ms-2 me-4' style={{ color: '#ffffff' }}>
-                                <Link to='/login' class='nav-link'>
+                            <Link to='/login' className='nav-link'>
+                                <button className='btn btn-outline-info ms-2 me-4' style={{ color: '#ffffff' }}>
                                     Login
-                                </Link>
-                            </button>
+                                </button>
+                            </Link>
 
-                            <button class='btn btn-outline-info'>
-                                <Link to='/signup' class='nav-link' style={{ color: '#ffffff' }}>
+                            <Link to='/signup' className='nav-link'>
+                                <button className='btn btn-outline-info' style={{ color: '#ffffff' }}>
                                     Signup
-                                </Link>
-                            </button>
+                                </button>
+                            </Link>
                         </div>
                     )}
                 </div>

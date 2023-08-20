@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import {Switch ,Route} from 'react-router-dom';
+import {Switch ,Route, useHistory } from 'react-router-dom';
 
 import { MaestroRoutes } from '../routes/maestroRoutes';
+import { ExplorerRoutes } from '../routes/explorerRoutes';
+import { CommonRoutes } from '../routes/commonRoutes';
 
 import Home from './home'
-import Maestros from './maestros';
-import Feed from './feed'
-
-import ExplorerHome from './explorer/home'
-
-import MaestroHome from './maestro/home'
-import Dashboard from './maestro/dashboard'
 
 import Login from './login'
 import Signup from './signup/signup'
+import Otp from './signup/otp'
+import Aftersignup1 from './signup/aftersignup1';
+import Aftersignup2 from './signup/aftersignup2'; 
+import Aftersignup3 from './signup/aftersignup3';
 import NotFound from './notfound'
 import Navbar from './navbar'
 import Footer from './footer'
@@ -35,26 +34,53 @@ function RouteWithSubRoutes(route) {
 
 function Landing() {
 
+  let history = useHistory();
   const [username, setUsername] = useState([]);
-  let routes = MaestroRoutes;
-  debugger;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  //callback function to change the state loggedin from child login component
+  const handleLogin = () => {
+    // Update the isLoggedIn state when the user logs in
+    setIsLoggedIn(true);
+  };
+  
+  var logout =()=>{
+    //set session storage
+    window.localStorage.setItem("isLoggedIn",false);
+    window.localStorage.removeItem("email");
+    window.localStorage.removeItem("jwt");
+
+    debugger;
+    //change the login state to false
+    setIsLoggedIn(localStorage.getItem("isLoggedIn"));
+    history.push("/")
+  }
 
   return (
     <div className='main-container'>
-        <Navbar></Navbar>
+        <Navbar Logout={logout} isLoggedIn={isLoggedIn}></Navbar>
         <br />
         <Switch>
           <Route exact path="/" component={Home}/>
-          <Route exact path="/explorer/home" component={ExplorerHome}/>
-          <Route exact path="/explorer/feed" component={Feed}/>
 
-          <Route exact path="/maestros/" component={Maestros}/>
-
-          <Route exact path="/login" component={Login}/>
+          <Route exact path="/login"><Login isLoggedIn={isLoggedIn} handleLogin={handleLogin} /></Route>
           <Route exact path="/signup" component={Signup}/>
+          <Route exact path="/signup/otp" component={Otp}/>
+          <Route exact path="/signup/aftersignup1" component={Aftersignup1}/>
+          <Route exact path="/signup/aftersignup2" component={Aftersignup2}/>
+          <Route exact path="/signup/aftersignup3" component={Aftersignup3}/>
+
           <Route exact path="/test" component={Test}/>
           {/*<Route path={MaestroRoutes.path}><Dashboard/></Route>*/}
           {MaestroRoutes.map((route, i) => (
+            <RouteWithSubRoutes key={i} {...route} />
+          ))}
+
+          {ExplorerRoutes.map((route, i) => (
+            <RouteWithSubRoutes key={i} {...route} />
+          ))}
+
+          {CommonRoutes.map((route, i) => (
             <RouteWithSubRoutes key={i} {...route} />
           ))}
 

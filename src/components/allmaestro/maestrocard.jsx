@@ -5,7 +5,7 @@ function MaestroCard() {
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="text-center">
-                        <img src={require("../images/maestros/avatar.jpg")} class="rounded-circle avatar-xl mb-3" alt=""/>
+                        <img src={require("../../images/maestros/avatar.jpg")} class="rounded-circle avatar-xl mb-3" alt=""/>
                         <h4 class="mb-0">Wade Warren</h4>
                         <p class="mb-0">Web Developer, Designer</p>
                     </div>
