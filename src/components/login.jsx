@@ -10,7 +10,11 @@ function Login({ isLoggedIn, handleLogin }) {
             
     const [message, setMessage] = useState("");
     
-    const [rememberMe, setRememberMe] = useState("");
+    const [isChecked, setIsChecked] = useState(false);
+
+    const handleCheckboxChange = (event) => {
+        setIsChecked(event.target.checked);
+    };
 
      var OnTextChanged = (args)=>{
         var copyOfcredentials = {...credentials};
@@ -32,9 +36,17 @@ function Login({ isLoggedIn, handleLogin }) {
                     if(result!=null){
                         // result[0] bcoz select query returns array in node
                         //set session storage
-                        window.localStorage.setItem("isLoggedIn", "true");
-                        window.localStorage.setItem("email", credentials.email);
-                        window.localStorage.setItem("jwt", result.jwt);
+                        if(isChecked){
+                            window.localStorage.setItem("isLoggedIn", "true");
+                            window.localStorage.setItem("email", credentials.email);
+                            window.localStorage.setItem("jwt", result.jwt);
+                            window.localStorage.setItem("userId", 4)
+                        }else{
+                            window.sessionStorage.setItem("isLoggedIn", "true");
+                            window.sessionStorage.setItem("email", credentials.email);
+                            window.sessionStorage.setItem("jwt", result.jwt);
+                            window.sessionStorage.setItem("userId", 4)
+                        }
                         // Call the handleLogin function passed from the parent
                         handleLogin();
                         //navigate to somewhere
@@ -89,7 +101,9 @@ function Login({ isLoggedIn, handleLogin }) {
                                         name="password" value={credentials.password} onChange={OnTextChanged} required/>
                                     </div>
                                     <div class="mb-3 form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1"  
+                                        checked={isChecked}
+                                        onChange={handleCheckboxChange}/>
                                         <label class="form-check-label" for="LoginCheck" >Remember me</label>
                                     </div>
                                     <button class="btn btn-primary d-flex justify-content-center mx-auto" onClick={Signin}>Login</button>
