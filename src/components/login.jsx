@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify'
+import config from '../config'
+import axios from "axios";
 
 function Login({ isLoggedIn, handleLogin }) {
 
@@ -7,74 +10,108 @@ function Login({ isLoggedIn, handleLogin }) {
 
     const [credentials, setCredentials] =
             useState({email:"", password:""});
-            
-    const [message, setMessage] = useState("");
-    
+                
     const [isChecked, setIsChecked] = useState(false);
 
     const handleCheckboxChange = (event) => {
         setIsChecked(event.target.checked);
     };
 
-     var OnTextChanged = (args)=>{
-        var copyOfcredentials = {...credentials};
-        copyOfcredentials[args.target.name] =
-            args.target.value;
-        setCredentials(copyOfcredentials);
-     }
-
-     var Signin = ()=>
-     {
-        var helper = new XMLHttpRequest();
-        helper.onreadystatechange = ()=>{
-            if(helper.readyState ==4 && 
-                helper.status == 200)
-                {
-                    var result = 
-                    JSON.parse(helper.responseText);
-                    console.log(result);
-                    if(result!=null){
-                        // result[0] bcoz select query returns array in node
-                        //set session storage
-                        if(isChecked){
-                            window.localStorage.setItem("isLoggedIn", "true");
-                            window.localStorage.setItem("email", credentials.email);
-                            window.localStorage.setItem("jwt", result.jwt);
-                            window.localStorage.setItem("userId", 4)
-                        }else{
-                            window.sessionStorage.setItem("isLoggedIn", "true");
-                            window.sessionStorage.setItem("email", credentials.email);
-                            window.sessionStorage.setItem("jwt", result.jwt);
-                            window.sessionStorage.setItem("userId", 4)
-                        }
-                        // Call the handleLogin function passed from the parent
-                        handleLogin();
-                        //navigate to somewhere
-                        history.push("/maestro/feed")
-                    }
-                }
-                 else
-                 {
-                     ShowMessage("Credentials Invalid!");
-                     setCredentials({email:"", password:""})
-                 }
-        }
-        console.log(helper.readyState);
-        helper.open("POST", 
-                    "http://127.0.0.1:8080/login");
-
-        helper.setRequestHeader("content-type","application/json");
-        console.log(helper.readyState);
-        helper.send(JSON.stringify(credentials));
-        console.log(helper.readyState);
+    var OnTextChanged = (args)=>{
+      var copyOfcredentials = {...credentials};
+      copyOfcredentials[args.target.name] =
+          args.target.value;
+      setCredentials(copyOfcredentials);
     }
 
-    var ShowMessage = (msg)=>{
-        setMessage(msg);
-        setTimeout(() => {
-                            setMessage("")
-                        }, 3000);
-     }
+    const Signin = () => {
+      debugger;
+     if (credentials.email.length === 0) {
+        toast.error('please enter email')
+      } else if (credentials.password.length === 0) {
+        toast.error('please enter password')
+      } else {
+        // make the API call to check if user exists
+        debugger;
+        axios
+          .post(`${config.serverURL}/login`, credentials,{
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+          .then((response) => {  debugger;
+            // get the data returned by server
+            const result = response.data
+            // const result2= response
+  
+            // check if user's authentication is successfull
+            if (result['status'] === 'Success') {
+              console.log(result)
+              // console.log(result.jwt)
+              toast.success('Welcome to My Maestro Meetup')
+              debugger;
+              if(isChecked){
+                window.localStorage.setItem("isLoggedIn", "true");
+                window.localStorage.setItem("email", credentials.email);
+                window.localStorage.setItem("jwt", result.jwt);
+                window.localStorage.setItem("userId", 4)
+
+                console.log(localStorage.jwt);
+
+                localStorage['role'] = result.userRole
+                console.log(localStorage.role);
+            
+                //Call the handleLogin function passed from the parent
+                handleLogin();
+
+                //console.log(sessionStorage.branchId)
+                if(localStorage.role==="ROLE_MAESTRO")
+                {
+                  history.push('/maestro/feed')
+                }else if(localStorage.role==="ROLE_EXPLORER")
+                {
+                  history.push('/explorer/feed')
+                }
+              }else{
+                //sessionStorage['jwt'] = result.jwt
+                //console.log(sessionStorage.token)
+                // sessionStorage['role'] = result.role
+                // console.log(sessionStorage.role)
+                // sessionStorage['id'] = result.id
+                
+                window.sessionStorage.setItem("isLoggedIn", "true");
+                window.sessionStorage.setItem("email", credentials.email);
+                window.sessionStorage.setItem("jwt", result.jwt);
+                window.sessionStorage.setItem("userId", result.id);
+                
+                console.log(sessionStorage.jwt);
+
+                sessionStorage['role'] = result.userRole
+                console.log(sessionStorage.role);
+            
+                //Call the handleLogin function passed from the parent
+                handleLogin();
+
+                //console.log(sessionStorage.branchId)
+                if(sessionStorage.role==="ROLE_MAESTRO")
+                {
+                  history.push('/maestro/feed')
+                }else if(sessionStorage.role==="ROLE_EXPLORER")
+                {
+                  history.push('/explorer/feed')
+                }
+              } 
+          } else {
+              toast.error('Invalid email or password')
+              setCredentials({email:"", password:""})
+          }
+      })
+        .catch((error) => {
+          console.log('error')
+          console.log(error)
+        })
+      }
+    }
 
     return (
         <div className='container mt-5'>
@@ -83,33 +120,29 @@ function Login({ isLoggedIn, handleLogin }) {
                     <div className='card'>
                         <div className="card-body">
                             <h3 className="card-title text-center">Login</h3>
-
-                            <div id='loginForm'>
-                                <form>
-                                    <div className='alert alert-info mb-3' style={{color:"red"}}>
-                                        {message}
+                              <div id='loginForm'>
+                                <form onSubmit={Signin}>
+                                    <div className="mb-3">
+                                        <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
+                                        <input type="email" className="form-control" id="LoginInputEmail" aria-describedby="emailHelp" 
+                                        name="email" value={credentials.email} onChange={OnTextChanged}/>
+                                        <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="LoginInputEmail" aria-describedby="emailHelp" 
-                                        name="email" value={credentials.email} onChange={OnTextChanged} required/>
-                                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                    <div className="mb-3">
+                                        <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                                        <input type="password" className="form-control" id="LoginInputPassword" 
+                                        name="password" value={credentials.password} onChange={OnTextChanged}/>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="LoginInputPassword" 
-                                        name="password" value={credentials.password} onChange={OnTextChanged} required/>
-                                    </div>
-                                    <div class="mb-3 form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1"  
+                                    <div className="mb-3 form-check">
+                                        <input type="checkbox" className="form-check-input" id="exampleCheck1"  
                                         checked={isChecked}
                                         onChange={handleCheckboxChange}/>
-                                        <label class="form-check-label" for="LoginCheck" >Remember me</label>
+                                        <label className="form-check-label" htmlFor="LoginCheck" >Remember me</label>
                                     </div>
-                                    <button class="btn btn-primary d-flex justify-content-center mx-auto" onClick={Signin}>Login</button>
+                                    <button className="btn btn-primary d-flex justify-content-center mx-auto">Login</button>
                                     <div className="text-center mt-3 mb-3">
                                         <p>Or log in with:</p>
-                                        <a href="#" className="btn btn-icon mx-1"><i class="fab fa-google fa-2x" style={{color:"#dd4b39"}}></i></a>
+                                        <a href="#" className="btn btn-icon mx-1"><i className="fab fa-google fa-2x" style={{color:"#dd4b39"}}></i></a>
                                         <a href="#" className="btn btn-icon mx-1"><i className="fab fa-twitter fa-2x" style={{color: "#55acee"}} ></i></a>
                                         <a href="#" className="btn btn-icon mx-1"><i className="fab fa-linkedin-in fa-2x" style={{color :"#0082ca"}}></i></a>
                                     </div>
@@ -118,7 +151,6 @@ function Login({ isLoggedIn, handleLogin }) {
                                     </div>
                                     <br></br>
                                 </form>
-
                             </div>
                         </div>
                     </div>

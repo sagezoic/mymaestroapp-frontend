@@ -26,8 +26,7 @@ function Addservice() {
             if (result === 'error') {
               toast.error('invalid details')
             } else {
-              toast.success('successfully added courier details')
-              ShowMessage("Successfully added service!");
+              toast.success('Successfully added service!')
               // navigate to the singin page
               //navigate('/customerHome')
             }
@@ -37,15 +36,6 @@ function Addservice() {
             console.log(error)
           })
     }
-
-  var ShowMessage = (msg)=>{
-    setMessage(msg);
-    setTimeout(() => {
-                        setMessage("")
-                    }, 3000);
- }
-
-  const [message, setMessage] = useState("");
 
   const [formData, setFormData] = useState({
     serviceTitle: '',
@@ -80,7 +70,7 @@ function Addservice() {
     }));
   }
 
-  return (
+  {/*return (
     <div>
       <Link to='/maestro/dashboard/services'>
         <button className="btn btn-dark btn-custom">
@@ -138,7 +128,7 @@ function Addservice() {
                                       <div className="mb-3">
                                           {/* <label className="form-label">Custom Duration(minutes)</label>
                                           <input type="number" className="form-control" id="Appointment-Duration" min="0" max="60" />
-                                          <br></br> */}
+                                          <br></br>
                                           <label className="form-label">Amount</label>
                                           <input type="number" className="form-control" id="Amount" />
                                           <br></br>
@@ -147,9 +137,6 @@ function Addservice() {
                                         </div>
                                       </div>
                                     )}
-                                    {/* ... other form fields ... */}
-                                    
-                                    {/* ... other buttons ... */}
                                 </form>
                             </div>
                         </div>
@@ -158,9 +145,8 @@ function Addservice() {
             </div>
         </div>
       </div>
-    )
+    )*/}
 
-  {/**
   return (
     <div>
       <Link to='/maestro/dashboard/services'>
@@ -214,7 +200,7 @@ function Addservice() {
             onChange={handleInputChange}
           >
             <option value="">Select</option>
-            <option value="SOFTWARE_ENGINEER">Software Engineers</option>
+            <option value="SOFTWARE_ENGINEERS">Software Engineers</option>
             <option value="DESIGNERS">Designers</option>
             <option value="MENTORS">Mentors</option>
             <option value="CREATORS">Creators</option>
@@ -244,15 +230,10 @@ function Addservice() {
         <button type="submit" className="btn btn-primary" style={{marginBottom:"1.5rem"}}>
           Add Service
         </button>
-        <div className='alert alert-info mb-3' style={{color:"green"}}>
-          {message}
-        </div>
       </form>
     </div>
->>>>>>> main
     </div>
   );
-   */}
 }
 
 export default Addservice

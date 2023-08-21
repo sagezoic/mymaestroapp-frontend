@@ -18,6 +18,9 @@ import Navbar from './navbar'
 import Footer from './footer'
 import Test from './test'
 
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 function RouteWithSubRoutes(route) {
   {/*This function will help us to pass the routes passed from the upper route to 
      the sub-components */}
@@ -50,7 +53,6 @@ function Landing() {
     window.localStorage.removeItem("email");
     window.localStorage.removeItem("jwt");
 
-    debugger;
     //change the login state to false
     setIsLoggedIn(localStorage.getItem("isLoggedIn"));
     history.push("/")
@@ -61,8 +63,10 @@ function Landing() {
         <Navbar Logout={logout} isLoggedIn={isLoggedIn}></Navbar>
         <br />
         <Switch>
-          <Route exact path="/" component={Home}/>
 
+          {/* Common Routes */}
+
+          <Route exact path="/" component={Home}/>
           <Route exact path="/login"><Login isLoggedIn={isLoggedIn} handleLogin={handleLogin} /></Route>
           <Route exact path="/signup" component={Signup}/>
           <Route exact path="/signup/otp" component={Otp}/>
@@ -87,6 +91,7 @@ function Landing() {
           <Route path="*" component={NotFound}/>
         </Switch>
         <Footer></Footer>
+        <ToastContainer position='top-center' autoClose={3000} />
     </div>
   )
 }

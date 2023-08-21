@@ -5,7 +5,7 @@ import PriorityDM from '../components/maestro/prioritydm';
 import Services from '../components/maestro/services';
 import AddService from '../components/maestro/addservice';
 import EditService from '../components/maestro/editservice';
-import ShareService from '../components/maestro/shareservice';
+import DeleteService from '../components/maestro/deleteservice';
 import Calendar from '../components/maestro/calendar';
 import Payments from '../components/maestro/payments';
 import Profile from '../components/maestro/profile';
@@ -42,8 +42,8 @@ export const MaestroRoutes = [
         component: EditService
       },
       {
-        path: "/maestro/dashboard/shareservice",
-        component: ShareService
+        path: "/maestro/dashboard/deleteservice",
+        component: DeleteService
       },
       {
         path: "/maestro/dashboard/calendar",

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Navbar({Logout, isLoggedIn}) {
-    debugger;
     return (
         <nav className='navbar navbar-expand-lg navbar-dark' style={{ backgroundColor: '#232F3E', color: '#ffffff' }}>
             <div className='container-fluid'>
