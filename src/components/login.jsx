@@ -24,8 +24,9 @@ function Login({ isLoggedIn, handleLogin }) {
       setCredentials(copyOfcredentials);
     }
 
-    const Signin = () => {
+    const Signin = (event) => {
       debugger;
+      event.preventDefault();
      if (credentials.email.length === 0) {
         toast.error('please enter email')
       } else if (credentials.password.length === 0) {
@@ -34,11 +35,8 @@ function Login({ isLoggedIn, handleLogin }) {
         // make the API call to check if user exists
         debugger;
         axios
-          .post(`${config.serverURL}/login`, credentials,{
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          })
+          .post(`${config.serverURL}/login`, credentials
+          )
           .then((response) => {  debugger;
             // get the data returned by server
             const result = response.data
