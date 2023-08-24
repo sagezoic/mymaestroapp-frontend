@@ -12,7 +12,7 @@ function ShareService() {
 
   return (
     <div><Link to='/maestro/dashboard/services'>
-        <button class="btn btn-dark btn-custom">
+        <button className="btn btn-dark btn-custom">
             Back
         </button>
         </Link>
@@ -21,7 +21,7 @@ function ShareService() {
             className="btn btn-danger"
             onClick={() => setShowDeletePrompt(true)}
           >
-            Delete Item
+            Share your service!
           </button>
 
         </div>

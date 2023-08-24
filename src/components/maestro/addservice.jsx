@@ -17,7 +17,7 @@ function Addservice() {
     if (token != null)
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
     axios
-          .post(config.serverURL + `/service`, formData)
+          .post(config.serverURL + `/service/add`, formData)
           .then((response) => {
             // get the data returned by server
             const result = response.data
@@ -41,7 +41,9 @@ function Addservice() {
     serviceTitle: '',
     servicetype: '',
     priceToken: '',
-    userId: Number(localStorage.getItem('userId')), // Get user ID from localStorage
+    timePeriod: '',
+    description: '',
+    userId: Number(sessionStorage.getItem('userId')), // Get user ID from localStorage
     serviceCategory: '',
     description: ''
   });
@@ -56,6 +58,7 @@ function Addservice() {
       serviceTitle: '',
       servicetype: '',
       priceToken: '',
+      timePeriod: '',
       userId: Number(localStorage.getItem('userId')),
       serviceCategory: '',
       description: ''
@@ -217,6 +220,20 @@ function Addservice() {
             id="priceToken"
             name="priceToken"
             value={formData.priceToken}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="priceToken" className="form-label">
+            Duration (mins)
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            id="timePeriod"
+            name="timePeriod"
+            value={formData.timePeriod}
             onChange={handleInputChange}
             required
           />

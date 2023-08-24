@@ -43,7 +43,7 @@ function Login({ isLoggedIn, handleLogin }) {
             // const result2= response
   
             // check if user's authentication is successfull
-            if (result['status'] === 'Success') {
+            if (result['message'] === 'Success') {
               console.log(result)
               // console.log(result.jwt)
               toast.success('Welcome to My Maestro Meetup')
