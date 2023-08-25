@@ -46,12 +46,19 @@ function Landing() {
     // Update the isLoggedIn state when the user logs in
     setIsLoggedIn(true);
   };
-  
-  var logout =()=>{
+
+  const logout =()=>{
     //set session storage
     window.localStorage.setItem("isLoggedIn",false);
     window.localStorage.removeItem("email");
     window.localStorage.removeItem("jwt");
+
+    window.sessionStorage.setItem("isLoggedIn",false);
+    window.sessionStorage.removeItem("email");
+    window.sessionStorage.removeItem("jwt");
+
+    //change the login state to false
+    setIsLoggedIn(sessionStorage.getItem("isLoggedIn"));
 
     //change the login state to false
     setIsLoggedIn(localStorage.getItem("isLoggedIn"));
