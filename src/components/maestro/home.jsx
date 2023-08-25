@@ -1,52 +1,51 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 function Home() {
-  
   return (
-    <div className='px-3'>
-        
+    <div className="px-3">
+      <div className="card mt-4 ms-3 " style={{backgroundColor:"#FCFCFE"}}>
         <div className="container-fluid">
           <div className="row g-3 my-2">
             <div className="col-md-3">
               <div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                 <div>
                   <h3>230</h3>
-                  <p className='fs-5'>Bookings</p>
+                  <p className="fs-5">Bookings</p>
                 </div>
-                  <i className='bi bi-telephone p-3 fs-1'></i>
+                <i className="bi bi-telephone p-3 fs-1"></i>
               </div>
             </div>
             <div className="col-md-3">
               <div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                 <div>
                   <h3>2</h3>
-                  <p className='fs-5'>Services</p>
+                  <p className="fs-5">Services</p>
                 </div>
-                  <i className='bi bi-card-list p-3 fs-1'></i>
+                <i className="bi bi-card-list p-3 fs-1"></i>
               </div>
             </div>
             <div className="col-md-3">
               <div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                 <div>
                   <h3>$2000</h3>
-                  <p className='fs-5'>Wallet</p>
+                  <p className="fs-5">Wallet</p>
                 </div>
-                  <i className='bi bi-wallet p-3 fs-1'></i>
+                <i className="bi bi-wallet p-3 fs-1"></i>
               </div>
             </div>
             <div className="col-md-3">
               <div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                 <div>
                   <h3>10%</h3>
-                  <p className='fs-5'>Increase</p>
+                  <p className="fs-5">Increase</p>
                 </div>
-                  <i className='bi bi-graph-up-arrow p-3 fs-1'></i>
+                <i className="bi bi-graph-up-arrow p-3 fs-1"></i>
               </div>
             </div>
           </div>
 
-          <table class="table caption-top bg-white rounded mt-2">
-            <caption className='text-black fs-4'>Recent Bookings</caption>
+          <table class="table caption-top bg-white rounded mt-2 border">
+            <caption className="text-black fs-4">Recent Bookings</caption>
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -76,8 +75,9 @@ function Home() {
             </tbody>
           </table>
         </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

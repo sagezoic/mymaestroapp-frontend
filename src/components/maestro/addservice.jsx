@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Link} from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from "axios";
 import AuthHeader from '../../services/auth-header';
 import { toast } from 'react-toastify' 
@@ -11,6 +11,8 @@ function Addservice() {
   const handleServiceSelect = (service) => {
     setSelectedService(service);
   };
+
+  const history = useHistory();
 
   const postData=()=>{
     const token = localStorage.getItem('jwt')
@@ -27,8 +29,8 @@ function Addservice() {
               toast.error('invalid details')
             } else {
               toast.success('Successfully added service!')
-              // navigate to the singin page
-              //navigate('/customerHome')
+              //Navigate to services home
+              history.push("/maestro/dashboard/services")
             }
           })
           .catch((error) => {
