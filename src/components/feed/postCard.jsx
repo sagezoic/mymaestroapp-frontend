@@ -1,12 +1,39 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import config from "../../config";
+import axios from "axios";
 
 function PostCard({Feed, likePost}) {
+
+  const [postUser, setPostUser] = useState();
+  let userId = Feed.userId;
+
+  useEffect(() => {
+    getUserDetails();
+  }, []);
+
+  const token = sessionStorage.getItem("jwt");
+  if (token != null)
+  axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+
+  const getUserDetails = () => {
+    axios
+      .get(config.serverURL + `/users/${userId}`)
+      .then((response) => {
+        //debugger;
+        console.log(response);
+        debugger;
+        setPostUser(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="card mb-3">
       <div className="card-header bg-white border-0">
         <img
-          src="#"
+          src={postUser!=null?config.serverURL+"/users/finddp?path="+postUser.dpUrl:""}
           style={{ borderRadius: "50%", width: "50px", height: "50px" }}
         />
         <span
@@ -24,7 +51,7 @@ function PostCard({Feed, likePost}) {
             target="_blank"
             style={{ color: "#212529" }}
           >
-            David J. Malan
+            {postUser!=null?postUser.firstName+" "+postUser.lastName:""}
           </a>
         </span>
         <span className="float-right">
@@ -40,7 +67,7 @@ function PostCard({Feed, likePost}) {
             color: "#474747",
           }}
         >
-          A Day
+          {postUser!=null?postUser.interest:""}
         </span>
         <span
           className="align-bottom"
@@ -69,7 +96,7 @@ function PostCard({Feed, likePost}) {
         </p>
         <div>
           <img
-            src={config.serverURL+"post/findimage/?image="+Feed.urlText}
+            src={config.serverURL+"/post/findimage?path="+Feed.urlText}
             className="card-img-top mb-1"
             alt=""
           />

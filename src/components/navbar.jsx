@@ -1,11 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import config from "../config";
 import axios from "axios";
+import { useUserContext } from './context/userContext';
 
 function Navbar({ Logout, isLoggedIn }) {
   const userId = sessionStorage.getItem("userId");
   const token = sessionStorage.getItem("jwt");
+  const [dpUrl, setDpUrl] = useState();
+  const { user, updateUser, logout } = useUserContext();
+
+  debugger;
+  console.log(user);
+  
+  useEffect(() => {
+    //getFeeds().then((data) => setFeeds(data));
+    if (user!=null){ 
+      setDpUrl(config.serverURL+"/users/finddp?path="+user.userDetails.dpUrl);
+    }
+  }, [user]);
+
+  console.log(dpUrl);
+  debugger;
 
   return (
     <nav
@@ -230,7 +246,7 @@ function Navbar({ Logout, isLoggedIn }) {
                   aria-expanded="false"
                 >
                   <img
-                    src=""
+                    src={dpUrl}
                     className="rounded-circle"
                     width="40"
                     height="40"

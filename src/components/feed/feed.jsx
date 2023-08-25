@@ -8,23 +8,23 @@ import axios from "axios";
 import config from "../../config";
 import { useUserContext } from "../context/userContext";
 
-const getFeeds = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        {
-          title: "Test title",
-        },
-        {
-          title: "Test title",
-        },
-        {
-          title: "Test title",
-        },
-      ]);
-    }, 2 * 1000);
-  });
-};
+// const getFeeds = () => {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve([
+//         {
+//           title: "Test title",
+//         },
+//         {
+//           title: "Test title",
+//         },
+//         {
+//           title: "Test title",
+//         },
+//       ]);
+//     }, 2 * 1000);
+//   });
+// };
 
 function Feed() {
   const [feeds, setFeeds] = useState([]);
@@ -72,7 +72,7 @@ function Feed() {
 
   const getAllUsers = () => {
     axios
-      .get(config.serverURL + `/post/`)
+      .get(config.serverURL + `//`)
       .then((response) => {
         //debugger;
         console.log(response);

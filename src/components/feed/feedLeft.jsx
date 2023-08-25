@@ -1,6 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useUserContext } from '../context/userContext';
+import config from "../../config";
 
 function FeedLeft() {
+
+  const [dpUrl, setDpUrl] = useState();
+  const { user, updateUser, logout } = useUserContext();
+
+  debugger;
+  console.log(user);
+  
+  useEffect(() => {
+    //getFeeds().then((data) => setFeeds(data));
+    if (user!=null){ 
+      setDpUrl(config.serverURL+"/users/finddp?path="+user.userDetails.dpUrl);
+    }
+  }, [user]);
+
+  console.log(dpUrl);
+  debugger;
+
   return (
     <div className="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
       <div className="card" style={{ width: "14rem" }}>
@@ -13,7 +32,7 @@ function FeedLeft() {
           }}
         >
           <img
-            src={require("../../images/users/user1/dp.jpg")}
+            src={dpUrl}
             className=""
             style={{
               borderRadius: "50%",

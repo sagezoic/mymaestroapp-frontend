@@ -7,7 +7,7 @@ function Signup() {
   const [formData, setFormData] = useState({
     email: '',
     username: '',
-    contactNumber: '',
+    mobileNo: '',
     password: '',
     confirmPassword: '',
   });
@@ -154,7 +154,7 @@ function Signup() {
                     <div className="mb-3">
                       <label htmlFor="contact" className="form-label">Contact Number</label>
                       <input type="tel" className="form-control" id="contact" 
-                      name="contactNumber" placeholder="Contact Number" value={formData.contactNumber}
+                      name="mobileNo" placeholder="Contact Number" value={formData.mobileNo}
                       onChange={handleInputChange} required/>
                     </div>
                     <div className="mb-3">
