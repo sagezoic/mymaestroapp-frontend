@@ -38,7 +38,16 @@ function Navbar({Logout, isLoggedIn}) {
                             <Link to='/explorer/feed' className='nav-link'>
                                 Feed
                             </Link>
+                            
                         </li>)}
+                        {isLoggedIn && (<li className='nav-item'>
+                            <Link to='/explorer/allservices' className='nav-link'>
+                                Services
+                            </Link>
+                            
+                        </li>)}
+
+                        
 
                         {isLoggedIn && (<li className='nav-item dropdown'>
                             <a className='nav-link dropdown-toggle' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
