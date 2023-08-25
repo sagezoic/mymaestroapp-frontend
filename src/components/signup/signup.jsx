@@ -61,6 +61,9 @@ function Signup() {
               helper.status == 200)
             {  
               ShowMessage("Record Added Successfully!");
+              let response = JSON.parse(helper.responseText);
+              console.log(response);
+              sessionStorage.setItem("regUserId",response.data.id);
               history.push("/signup/otp");
             }
             else
