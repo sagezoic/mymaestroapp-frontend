@@ -112,7 +112,7 @@ function FeedLeft() {
                 class="card-header bg-white border-0"
                 style={{marginBottom: '-22px', fontSize: '12px'}}
             >
-                En Yeni
+                Category
             </div>
             <div class="card-body">
                 <div class="card-title">
@@ -124,7 +124,7 @@ function FeedLeft() {
                     ><span
                     class="ml-2 fontWeight-bold"
                     style={{fontSize: '13px', color: '#5f5f5f'}}
-                    >kodluyoruz</span
+                    >Software Engineers</span
                     >
                 </div>
                 <div>
@@ -135,7 +135,7 @@ function FeedLeft() {
                     ><span
                     class="ml-2 fontWeight-bold"
                     style={{fontSize: '13px', color: '#5f5f5f'}}
-                    >front-end</span
+                    >Designers</span
                     >
                 </div>
                 <div>
@@ -146,7 +146,7 @@ function FeedLeft() {
                     ><span
                     class="ml-2 fontWeight-bold"
                     style={{fontSize: '13px', color: '#5f5f5f'}}
-                    >html</span
+                    >Mentors</span
                     >
                 </div>
                 <div>
@@ -157,7 +157,7 @@ function FeedLeft() {
                     ><span
                     class="ml-2 fontWeight-bold"
                     style={{fontSize: '13px', color: '#5f5f5f'}}
-                    >css</span
+                    >Creators</span
                     >
                 </div>
                 <div>
@@ -168,46 +168,13 @@ function FeedLeft() {
                     ><span
                     class="ml-2 fontWeight-bold"
                     style={{fontSize: '13px', color: '#5f5f5f'}}
-                    >bootstrap</span
+                    >Mental Health Experts</span
                     >
                 </div>
-                <div class="mt-3 categories">Gruplar</div>
-                <span class="mt-2 categories">Etkinlikler</span>
-                <span
-                    class="float-right mb-5"
-                    style={{fontSize: '23px', color: '#5f5f5f'}}
-                    >+</span
-                >
-                <div class="mt-3 mb-1 categories">Takip edilen hashtagler</div>
-                <div>
-                    <i
-                    class="fas fa-hashtag"
-                    style={{fontSize: '13px', fontWeight: 'bold'}}
-                    ></i
-                    ><span
-                    class="ml-2 fontWeight-bold"
-                    style={{fontSize: '13px', color: '#5f5f5f'}}
-                    >kodluyoruz</span
-                    >
+                <div class="mt-3 categories">More...</div>
+                <span class="mt-3 categories">My Posts</span>
+                <div class="mt-3 mb-1 categories"></div>
                 </div>
-                <div>
-                    <i
-                    class="fas fa-hashtag"
-                    style={{fontSize: '13px', fontWeight: 'bold'}}
-                    ></i
-                    ><span
-                    class="ml-2 fontWeight-bold"
-                    style={{fontSize: '13px', color: '#5f5f5f'}}
-                    >front-end</span
-                    >
-                </div>
-                </div>
-            </div>
-            <div
-                class="card-footer bg-white"
-                style={{fontSize: '13px', fontWeight: 'bold', textAlign: 'center'}}
-            >
-                Daha fazla keşfet
             </div>
             </div>
         </div>
