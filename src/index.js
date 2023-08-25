@@ -2,9 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {Landing} from './components/landing';
 import { BrowserRouter } from 'react-router-dom';
+import { UserProvider } from './components/context/userContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-root.render(<BrowserRouter>
-                <Landing/>
-            </BrowserRouter>)
+root.render(
+            <UserProvider>
+                <BrowserRouter>
+                    <Landing/>
+                </BrowserRouter>
+            </UserProvider>
+            )
