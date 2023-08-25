@@ -5,13 +5,17 @@ import PriorityDM from '../components/explorer/prioritydm';
 import Calendar from '../components/explorer/calendar';
 import Payments from '../components/explorer/payments';
 import Profile from '../components/explorer/profile';
-
+import AllServices from '../components/explorer/allservices';
 import Dashboard from '../components/explorer/dashboard';
 
 export const ExplorerRoutes = [
   {
     path: "/explorer/feed",
     component: Feed
+  },
+  {
+    path: "/explorer/allservices/",
+    component: AllServices
   },
   {
     path: "/explorer/dashboard",
@@ -45,6 +49,8 @@ export const ExplorerRoutes = [
         path: "/explorer/dashboard/",
         component: ExplorerHome
       }
+     
+
     ]
   }
 ];
