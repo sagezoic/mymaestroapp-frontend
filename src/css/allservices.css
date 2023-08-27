@@ -60,7 +60,8 @@
     padding: 10px;
   }
   .service-posting >a:hover{
-    background-color: #1945f5;
+    background-color: grey;
+    color: #ffffff;
     transition: 400ms ease-in-out;
   }
   .category {
