@@ -7,6 +7,8 @@ import Payments from '../components/explorer/payments';
 import Profile from '../components/explorer/profile';
 import AllServices from '../components/explorer/allservices';
 import Dashboard from '../components/explorer/dashboard';
+import ReqService from '../components/explorer/reqservice';
+import Transaction from '../components/transaction';
 
 export const ExplorerRoutes = [
   {
@@ -16,6 +18,14 @@ export const ExplorerRoutes = [
   {
     path: "/explorer/allservices/",
     component: AllServices
+  },
+  {
+    path: "/explorer/reqservice",
+    component: ReqService
+  },
+  {
+    path: "/explorer/transaction",
+    component: Transaction
   },
   {
     path: "/explorer/dashboard",

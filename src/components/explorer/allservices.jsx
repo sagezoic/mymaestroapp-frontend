@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import config from "../../config";
 import { Link } from "react-router-dom";
 import Filter from "../filter/filter";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import '../../css/allservices.css'
 
 const experience = [
@@ -38,6 +37,10 @@ function AllServices() {
   };
 
   console.log(allserviceList);
+
+  const serviceRequest = ()=>{
+    console.log("Inside the service request")
+  }
 
   const ServiceData = JSON.parse(localStorage.getItem("item")) || [];
   const [filteredServices, setFilteredServices] = useState([...ServiceData, ...allserviceList]);
@@ -135,16 +138,19 @@ function AllServices() {
                           <h3>{service.serviceTitle}</h3>
                           <div className="category">
                             <p>{service.serviceCategory}</p>
-                            <p>{service.timePeriod} mins</p>
-                            <p>₹ {service.priceToken}</p>
+                            <bAmount: <p>₹ {service.priceToken}</p>
                           </div>
-                          <div>description</div>
+                          <div>{service.description}</div>
                         </div>
                       </div>
                       <div className="service-button">
-                        <div className="service-posting">
-                          <Link to="/apply-jobs">Avail Service</Link>
-                        </div>
+                          <button
+                            className={`btn btn-dark btn-custom-sq me-4}`}
+                            onClick={() => serviceRequest()}
+                          >
+                            <Link to="/explorer/reqservice" style={{textDecoration: "none"}}>Avail Service</Link>
+                          </button>
+                      
                         <div className="save-button">
                           <Link
                             to="/Jobs"
@@ -157,12 +163,6 @@ function AllServices() {
                               );
                             }}
                           >
-                            {/* {localStorage.getItem("Job") && JSON.parse(localStorage.getItem("Job")).id ===
-                            id ? (
-                              <AiFillHeart />
-                            ) : (
-                              <AiOutlineHeart />
-                            )} */}
                           </Link>
                         </div>
                       </div>
