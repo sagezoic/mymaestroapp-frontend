@@ -70,20 +70,6 @@ function Feed() {
       });
   };
 
-  const getAllUsers = () => {
-    axios
-      .get(config.serverURL + `//`)
-      .then((response) => {
-        //debugger;
-        console.log(response);
-        setFeeds(response.data.data);
-        debugger;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   const likePost = (postId) => {
     console.log(postId);
     //logic for like

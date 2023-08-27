@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useUserContext } from '../context/userContext';
+import config from "../../config";
 
 function MessagePanel() {
+
+  const [dpUrl, setDpUrl] = useState();
+  const { user, updateUser, logout } = useUserContext();
+  
+  debugger;
+  console.log(user);
+  
+  useEffect(() => {
+    //getFeeds().then((data) => setFeeds(data));
+    if (user!=null){ 
+      setDpUrl(config.serverURL+"/users/finddp?path="+user.userDetails.dpUrl);
+    }
+  }, [user]);
+
   return (
     <nav
       className="navbar navbar-expand-xl navbar-light bg-light position-sticky fixed-bottom border bg-white"
@@ -15,7 +31,7 @@ function MessagePanel() {
     >
       <a className="navbar-brand" href="#">
         <img
-          src={require("../../images/users/user1/dp.jpg")}
+          src={dpUrl}
           style={{ width: "30px", height: "30px", borderRadius: "50%" }}
         />
       </a>
