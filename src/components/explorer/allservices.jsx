@@ -137,8 +137,8 @@ function AllServices() {
                           <h4>{service.firstName+" "+service.lastName}</h4>
                           <h3>{service.serviceTitle}</h3>
                           <div className="category">
-                            <p>{service.serviceCategory}</p>
-                            <bAmount: <p>₹ {service.priceToken}</p>
+                            <b>Service Category:</b><p>{service.serviceCategory}</p>
+                            <b>Amount:</b> <p>₹ {service.priceToken}</p>
                           </div>
                           <div>{service.description}</div>
                         </div>
