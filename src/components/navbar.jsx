@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import config from "../config";
 import axios from "axios";
-import { useUserContext } from './context/userContext';
+import { useUserContext } from "./context/userContext";
 
 function Navbar({ Logout, isLoggedIn }) {
   const userId = sessionStorage.getItem("userId");
@@ -10,18 +10,19 @@ function Navbar({ Logout, isLoggedIn }) {
   const [dpUrl, setDpUrl] = useState();
   const { user, updateUser, logout } = useUserContext();
 
-  debugger;
+  //debugger;
   console.log(user);
-  
+
   useEffect(() => {
     //getFeeds().then((data) => setFeeds(data));
-    if (user!=null){ 
-      setDpUrl(config.serverURL+"/users/finddp?path="+user.userDetails.dpUrl);
+    if (user != null) {
+      setDpUrl(
+        config.serverURL + "/users/finddp?path=" + user.userDetails.dpUrl
+      );
     }
   }, [user]);
 
   console.log(dpUrl);
-  debugger;
 
   return (
     <nav
@@ -101,7 +102,7 @@ function Navbar({ Logout, isLoggedIn }) {
                 <ul className="dropdown-menu">
                   <li>
                     <Link
-                      to="/maestro/dashboard/home"
+                      to={sessionStorage.getItem("role")==="ROLE_EXPLORER"?"/explorer/dashboard/home":"/maestro/dashboard/home"}
                       className="dropdown-item"
                     >
                       Home
@@ -112,7 +113,7 @@ function Navbar({ Logout, isLoggedIn }) {
                   </li>
                   <li>
                     <Link
-                      to="/maestro/dashboard/services"
+                      to={sessionStorage.getItem("role")==="ROLE_EXPLORER"?"/explorer/dashboard/services":"/maestro/dashboard/services"}
                       className="dropdown-item"
                     >
                       Services
@@ -123,7 +124,7 @@ function Navbar({ Logout, isLoggedIn }) {
                   </li>
                   <li>
                     <Link
-                      to="/maestro/dashboard/calendar"
+                      to={sessionStorage.getItem("role")==="ROLE_EXPLORER"?"/explorer/dashboard/calendar":"/maestro/dashboard/calendar"}
                       className="dropdown-item"
                     >
                       Calendar
@@ -134,7 +135,7 @@ function Navbar({ Logout, isLoggedIn }) {
                   </li>
                   <li>
                     <Link
-                      to="/maestro/dashboard/payments"
+                      to={sessionStorage.getItem("role")==="ROLE_EXPLORER"?"/explorer/dashboard/payments":"/maestro/dashboard/payments"}
                       className="dropdown-item"
                     >
                       Payments
@@ -145,7 +146,7 @@ function Navbar({ Logout, isLoggedIn }) {
                   </li>
                   <li>
                     <Link
-                      to="/maestro/dashboard/profile"
+                      to={sessionStorage.getItem("role")==="ROLE_EXPLORER"?"/explorer/dashboard/profile":"/maestro/dashboard/profile"}
                       className="dropdown-item"
                     >
                       Profile
@@ -216,7 +217,7 @@ function Navbar({ Logout, isLoggedIn }) {
             </li>
             {isLoggedIn && (
               <li className="nav-item">
-                <Link to="/maestro/dashboard/prioritydm" className="nav-link">
+                <Link to={sessionStorage.getItem("role")==="ROLE_EXPLORER"?"/explorer/dashboard/prioritydm":"/maestro/dashboard/prioritydm"} className="nav-link">
                   <i
                     className="bi bi-chat-dots"
                     style={{ color: "#ffffff", fontSize: "1.2rem" }}
@@ -259,14 +260,9 @@ function Navbar({ Logout, isLoggedIn }) {
                   aria-labelledby="navbarDropdownMenuLink"
                 >
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link to={sessionStorage.getItem("role")==="ROLE_EXPLORER"?"/explorer/dashboard/profile":"/maestro/dashboard/profile"} className="dropdown-item">
                       Profile
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Settings
-                    </a>
+                    </Link>
                   </li>
                   <li onClick={Logout}>
                     <a className="dropdown-item" href="">

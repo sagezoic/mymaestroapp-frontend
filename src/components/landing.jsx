@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Switch ,Route, useHistory } from 'react-router-dom';
 
 import { MaestroRoutes } from '../routes/maestroRoutes';
@@ -47,18 +47,27 @@ function Landing() {
     setIsLoggedIn(true);
   };
 
+  useEffect(()=>{
+    debugger;
+    if(sessionStorage.getItem("isLoggedIn")){
+      setIsLoggedIn(sessionStorage.getItem("isLoggedIn"));
+    }
+  },[])
+
   const logout =()=>{
     //set session storage
-    window.localStorage.setItem("isLoggedIn",false);
+    window.localStorage.removeItem("isLoggedIn");
     window.localStorage.removeItem("email");
     window.localStorage.removeItem("jwt");
 
-    window.sessionStorage.setItem("isLoggedIn",false);
+    window.sessionStorage.removeItem("isLoggedIn");
     window.sessionStorage.removeItem("email");
+    window.sessionStorage.removeItem("role");
+    window.sessionStorage.removeItem("userId");
     window.sessionStorage.removeItem("jwt");
 
     //change the login state to false
-    setIsLoggedIn(sessionStorage.getItem("isLoggedIn"));
+    setIsLoggedIn(false);
 
     //change the login state to false
     setIsLoggedIn(localStorage.getItem("isLoggedIn"));

@@ -1,85 +1,189 @@
-import axios from 'axios';
-import React, { useState,useEffect } from 'react'
-import config from '../../config';
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import config from "../../config";
+import { Link } from "react-router-dom";
+import Filter from "../filter/filter";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import '../../css/allservices.css'
 
+const experience = [
+  { min: 0, max: 1 },
+  { min: 2, max: 3 },
+  { min: 4, max: 5 }
+];
 
 function AllServices() {
-    const [allserviceList , setServiceList] = useState([]);
+  const [allserviceList, setServiceList] = useState([]);
 
-    useEffect(() => {
-        getAllService();
-    },[]);
+  useEffect(() => {
+    getAllService();
+  }, []);
+
+  const token = sessionStorage.getItem("jwt");
+
+  if (token != null)
+    axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+
+  const getAllService = () => {
+    axios
+      .get(config.serverURL + "/service/getallservice")
+      .then((response) => {
+        console.log(response);
+        setServiceList(response.data.data);
+        console.log(allserviceList);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  console.log(allserviceList);
+
+  const ServiceData = JSON.parse(localStorage.getItem("item")) || [];
+  const [filteredServices, setFilteredServices] = useState([...ServiceData, ...allserviceList]);
+  const [searchterm, setSearchTerm] = useState("");
+  const [active, setActive] = useState(false);
   
-    const getAllService=()=>{
-        axios
-        .get(config.serverURL + '/service/getallservice')
-        .then((response)=>{
-            console.log(response);
-            setServiceList(response.data.data);
-            console.log(allserviceList)
-         })
-            .catch((error) => {
-                console.log(error);
-        });
-    }; 
+  useEffect(() => {
+    debugger;
+    setFilteredServices(allserviceList);
+  }, [allserviceList]);
 
+   function handleJobFilter(event) {
+    console.log("inside handle job filter")
+  //   const value = event.target.innerText;
+  //   event.preventDefault();
+  //   setFilteredJobs(
+  //     allserviceList.filter((service) => {
+  //       return service.serviceTitle === value;
+  //     })
+  //   );
+   }
+
+  function saveClick(id, logo, company, position, location, posted) {
+    window.localStorage.setItem(
+      "",
+      JSON.stringify(id, logo, company, position, location, posted)
+    );
+    window.localStorage.setItem("allserviceList", ServiceData);
+    console.log(ServiceData);
+  }
+
+  const searchEvent = (event) => {
+    const data = event.target.value;
+    setSearchTerm(data);
+    if (searchterm !== "" || searchterm.length > 2) {
+      const filterData = allserviceList.filter((item) => {
+        if (item) {
+          return Object.values(item)
+            .join("")
+            .toLowerCase()
+            .includes(searchterm.toLowerCase());
+        } else {
+          return 0;
+        }
+      });
+      setFilteredServices(filterData);
+    } else {
+      setFilteredServices(allserviceList);
+    }
+  };
+
+  function handleExperienceFilter(checkedState) {
+  console.log("inside handle ratings")
+//   let filters = [];
+//   checkedState.forEach((item, index) => {
+//     if (item === true) {
+//       const filterS = allserviceList.filter((service) => {
+//         return (
+//           service.experience >= experience[index].min &&
+//           service.experience <= experience[index].max
+//         );
+//       });
+//       filters = [...filters, ...filterS];
+//     }
+//     setFilteredJobs(filters);
+//   });
+  }
   
-    return (
-    
-
-  <div>
-       <div className="container">
-      <section className="mx-auto my-5" style={{ maxWidth: '23rem' }}>
-        <div className="card booking-card v-2 mt-2 mb-4 rounded-bottom">
-          <div className="bg-image hover-overlay ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-            <img src="https://mdbootstrap.com/img/Photos/Others/water-lily.jpg" className="img-fluid" alt="Gallery" />
-            <a href="#!">
-              <div className="mask" style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
-            </a>
-          </div>
-          <div className="card-body">
-            <h4 className="card-title font-weight-bold"><a href="/">Fine Art Pictures Gallery</a></h4>
-            <ul className="list-unstyled list-inline mb-2">
-              <li className="list-inline-item me-0"><i className="fa fa-star fa-xs"></i></li>
-              <li className="list-inline-item me-0"><i className="fa fa-star fa-xs"></i></li>
-              <li className="list-inline-item me-0"><i className="fa fa-star fa-xs"></i></li>
-              <li className="list-inline-item me-0"><i className="fa fa-star fa-xs"></i></li>
-              <li className="list-inline-item"><i className="fa fa-star-half-alt fa-xs"></i></li>
-            </ul>
-            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-            <hr className="my-4" />
-            <p className="h5 font-weight-bold mb-4">Opening hours</p>
-            <ul className="list-unstyled d-flex justify-content-start align-items-center mb-0">
-              <li>Tuesday - Friday</li>
-              <li>
-                <div className="chip ms-3">10:00AM</div>
-              </li>
-              <li>
-                <div className="chip ms-0 me-0">6:00PM</div>
-              </li>
-            </ul>
-            <ul className="list-unstyled d-flex justify-content-start align-items-center mb-0">
-              <li>Saturday - Sunday</li>
-              <li>
-                <div className="chip ms-3">9:00AM</div>
-              </li>
-              <li>
-                <div className="chip ms-0 me-0">7:00PM</div>
-              </li>
-            </ul>
-            <ul className="list-unstyled d-flex justify-content-start align-items-center mb-0">
-              <li>Monday</li>
-              <li>
-                <div className="chip ms-3">CLOSED</div>
-              </li>
-            </ul>
+  console.log(filteredServices);
+  debugger;
+  return (
+    <div className="container">
+      <div className="jobs-for-you">
+        <div className="service-background">
+          <div className="title ms-4">
+            <h2>Get guidance from best & experienced maestro</h2>
           </div>
         </div>
-      </section>
+        <div className="service-section">
+          <div className="service-page">
+            {filteredServices.map(
+              (service) => {
+                debugger;
+                return (
+                  <div className="service-list">
+                    <div className="service-card">
+                      <div className="service-name">
+                        <img
+                          src={config.serverURL+`/users/finddp?path=`+service.dpUrl}
+                          alt="logo"
+                          className="service-profile"
+                        />
+                        <div className="service-detail">
+                          <h4>{service.firstName+" "+service.lastName}</h4>
+                          <h3>{service.serviceTitle}</h3>
+                          <div className="category">
+                            <p>{service.serviceCategory}</p>
+                            <p>{service.timePeriod} mins</p>
+                            <p>₹ {service.priceToken}</p>
+                          </div>
+                          <div>description</div>
+                        </div>
+                      </div>
+                      <div className="service-button">
+                        <div className="service-posting">
+                          <Link to="/apply-jobs">Avail Service</Link>
+                        </div>
+                        <div className="save-button">
+                          <Link
+                            to="/Jobs"
+                            onClick={() => {
+                              saveClick(
+                                {
+                                  service
+                                },
+                                setActive(!active)
+                              );
+                            }}
+                          >
+                            {/* {localStorage.getItem("Job") && JSON.parse(localStorage.getItem("Job")).id ===
+                            id ? (
+                              <AiFillHeart />
+                            ) : (
+                              <AiOutlineHeart />
+                            )} */}
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+            )}
+          </div>
+
+          <Filter
+            setFilteredServices={setFilteredServices}
+            handleJobFilter={handleJobFilter}
+            handleExperienceFilter={handleExperienceFilter}
+            searchEvent={searchEvent}
+            experience={experience}
+          />
+        </div>
+      </div>
     </div>
-    </div>
-  )
+  );
 }
 
-export default AllServices
+export default AllServices;

@@ -7,7 +7,7 @@ function LatestNews() {
         <div className="card-header bg-white border-0">
           <span>Latest Updates</span>
           <span>
-            <i className="fas fa-info-circle float-right"></i>
+            <i className="fas fa-info-circle float-right ms-2"></i>
           </span>
         </div>
         <div className="card-title">

@@ -1,0 +1,120 @@
+.service-list {
+    margin: 1%;
+    padding: 0.7rem;
+    background-color: #f9f9f9;
+  }
+  .service-card {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.4rem;
+    min-height: 100px;
+    align-items: center;
+    background-color: #fff;
+    
+  }
+  .service-card:hover {
+    box-shadow: 1px 2px 5px 5px rgba(222,217,217,0.75);
+    -webkit-box-shadow: 1px 2px 5px 5px rgba(222,217,217,0.75);
+    -moz-box-shadow: 1px 2px 5px 5px rgba(222,217,217,0.75);
+    transition: 70ms ease;
+    transform: scale(1.02);
+  }
+  
+  .service-name {
+    display: flex;
+  }
+  .service-profile {
+    width: 60px;
+    height: 60px;
+    margin: 0.5rem;
+  }
+  .service-detail {
+    padding: 0px 10px;
+  }
+  .service-detail > h4 {
+    color: #1945f5;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+  .service-detail > h3 {
+    color: #091e5a;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+  .service-detail > p {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .service-posted {
+    font-size: 0.8rem;
+  }
+  .service-posting {
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    background-color: #ffffff;
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+  }
+  .service-posting >a:hover{
+    background-color: #1945f5;
+    transition: 400ms ease-in-out;
+  }
+  .category {
+    display: flex;
+    gap: 22px;
+  }
+  .service-background {
+    background: #432C7A;
+    height: 270px;
+    -webkit-clip-path: polygon(100% 0, 100% 81%, 50% 90%, 0 83%, 0 0);
+    clip-path: polygon(100% 0, 100% 81%, 50% 90%, 0 83%, 0 0);
+  }
+  .service-background .title {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 35px;
+    padding: 80px 0px;
+  }
+  .service-section{
+    display: flex;
+    background: #F7F7FB;
+    max-width: 100%;
+  }
+  .jobs-for-you{
+    width: 100%;
+  }
+  .service-page{
+    width:82%;
+  }
+  @media (max-width:855px)
+  {
+  .service-page{
+    font-size: 10px;
+      
+  }
+  .service-card{
+    display: flex;
+  }
+  .service-detail>h4 {
+    font-size: 11px;
+  }
+  .service-detail>h3{
+    font-size: 15px;
+  }.category>p{
+    font-size: 10px;
+    flex-wrap: wrap;
+  }
+  }
+  .save-button{
+    font-size: 22px;
+  }
+  .service-button{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }

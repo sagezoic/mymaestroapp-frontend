@@ -29,20 +29,49 @@ function PostCard({Feed, likePost}) {
       });
   };
 
+  const calcNoOfDays=(timeStamp)=>{
+    debugger;
+    // Convert the timestamp string to a Date object
+    const timestampDate = new Date(timeStamp);
+
+    // Get the current date
+    const currentDate = new Date();
+
+    // Calculate the time difference in milliseconds
+    const timeDifference = currentDate - timestampDate;
+
+    // Calculate the number of days from the time difference
+    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    
+    if(daysDifference>1){
+      return daysDifference+" Days"
+    }else{
+      let time=Math.floor(timeDifference/(1000*60*60));
+      if(time>0){
+        return time+" hr"
+      }else
+        return Math.floor(timeDifference/(1000*60))+" mins";
+    }
+    
+  }
+
   return (
     <div className="card mb-3">
       <div className="card-header bg-white border-0">
+      <div className="row">
+      <div className="col-md-1 me-3">
         <img
           src={postUser!=null?config.serverURL+"/users/finddp?path="+postUser.dpUrl:""}
           style={{ borderRadius: "50%", width: "50px", height: "50px" }}
         />
+        </div>
+        <div className="col-md-10">
         <span
           style={{
             fontFamily:
               "-apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif",
             fontWeight: "bold",
             fontSize: "14px",
-            marginLeft: "8px",
           }}
           className="align-top"
         >
@@ -51,36 +80,39 @@ function PostCard({Feed, likePost}) {
             target="_blank"
             style={{ color: "#212529" }}
           >
-            {postUser!=null?postUser.firstName+" "+postUser.lastName:""}
+            {postUser!=null?postUser.userName:""}
           </a>
         </span>
-        <span className="float-right">
-          <i className="fas fa-ellipsis-h fa-md"></i>
-        </span>
+        <br/>
         <span
           className="align-middle"
           style={{
-            marginLeft: "-96px",
             fontFamily:
               "-apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif",
             fontSize: "13px",
             color: "#474747",
+            marginRight: "8px"
           }}
         >
           {postUser!=null?postUser.interest:""}
         </span>
+        <span className="float-right">
+          <i className="fas fa-ellipsis-h fa-md"></i>
+        </span>
+        <br/>
         <span
           className="align-bottom"
           style={{
-            marginLeft: "-78px",
             fontFamily:
               "-apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell sans-serif",
             fontSize: "13px",
             color: "#474747",
           }}
         >
-          25a <i className="fas fa-globe-americas fa-sm"></i>
+          {calcNoOfDays(Feed.timeStamp)} Ago <i className="fas fa-globe-americas fa-sm"></i>
         </span>
+        </div>
+        </div>
       </div>
       <div>
         <p

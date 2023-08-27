@@ -6,7 +6,7 @@ function Signup() {
   let history = useHistory();
   const [formData, setFormData] = useState({
     email: '',
-    username: '',
+    userName: '',
     mobileNo: '',
     password: '',
     confirmPassword: '',
@@ -149,9 +149,9 @@ function Signup() {
                       onChange={handleInputChange} required/>
                     </div>
                     <div className="mb-3">
-                      <label htmlFor="username" className="form-label">Username</label>
-                      <input type="text" className="form-control" id="username" 
-                      name="username" placeholder="Username" value={formData.username}
+                      <label htmlFor="userName" className="form-label">Username</label>
+                      <input type="text" className="form-control" id="userName" 
+                      name="userName" placeholder="userName" value={formData.userName}
                       onChange={handleInputChange} required/>
                     </div>
                     <div className="mb-3">

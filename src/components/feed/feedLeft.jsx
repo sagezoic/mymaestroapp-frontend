@@ -6,7 +6,7 @@ function FeedLeft() {
 
   const [dpUrl, setDpUrl] = useState();
   const { user, updateUser, logout } = useUserContext();
-
+  
   debugger;
   console.log(user);
   
@@ -49,7 +49,7 @@ function FeedLeft() {
               target="_blank"
               style={{ color: "#212529" }}
             >
-              Tamnnah Bhatia
+               {user!=null?user.userDetails.firstName+" "+user.userDetails.lastName:""}
             </a>
           </p>
           <div
@@ -61,7 +61,7 @@ function FeedLeft() {
               color: "#5f5f5f",
             }}
           >
-            Software Developer at MyMaestro - SDE IV
+            {user!=null?user.userDetails.interest:""}
           </div>
           <hr />
           <div className="card-text">
