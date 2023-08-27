@@ -2,12 +2,15 @@ import { colors } from '@mui/material'
 import axios from 'axios'
 import React, { useState } from 'react'
 import config from '../../config'
+import { Link, useHistory } from 'react-router-dom'
+
 
 function Aftersignup1() {
   const [formData, setFormData] = useState({
-    id: sessionStorage.getItem("regUserId"),
-    role: ''
+    email:sessionStorage.getItem("regUserEmail"),
+    userRole: ''
   })
+  let history = useHistory();
 
   const addRole = (e) => {
     debugger;
@@ -16,6 +19,7 @@ function Aftersignup1() {
       .post(config.serverURL + `/users/role`,formData)
       .then((response) => {
         console.log(response.data);
+        history.push("/signup/aftersignup2");
       })
       .catch((error) => {
         console.error("Error in Added role", error)
@@ -29,7 +33,7 @@ function Aftersignup1() {
       ...prevData,
       [name]: value,
     }));
-    console.log(formData.role);
+    console.log(formData.userRole);
   }
 
 
@@ -45,23 +49,23 @@ function Aftersignup1() {
           <div class="btn-toolbar d-block" aria-label="Basic checkbox toggle button group">
             <div className="row">
               <div className="col-md-12 mb-1">
-                <input type="radio" className="btn-check" name='role' id="btnradio1" autoComplete="off" value="ROLE_MAESTRO" onChange={handleInputChange}
+                <input type="radio" className="btn-check" name='userRole' id="btnradio1" autoComplete="off" value="ROLE_MAESTRO" onChange={handleInputChange}
                 />
                 <label className="btn btn-outline-danger w-100" htmlFor="btnradio1">
-                  Maestro
+                  MAESTRO
                 </label>
               </div>
               <br /><br /><br />
               <div className="col-md-12 mb-1">
-                <input type="radio" className="btn-check" name='role' id="btnradio2" autoComplete="off" value="ROLE_EXPLORER" onChange={handleInputChange}
+                <input type="radio" className="btn-check" name='userRole' id="btnradio2" autoComplete="off" value="ROLE_EXPLORER" onChange={handleInputChange}
                 />
                 <label className="btn btn-outline-danger w-100" htmlFor="btnradio2">
-                  Explorer
+                  EXPLORER
                 </label>
               </div>
               <br /><br /><br />
 
-              <button className='btn btn-primary'  onClick={ {addRole} } >Next</button>
+              <button className='btn btn-primary'  onClick={addRole } >Next</button>
 
             </div>
 

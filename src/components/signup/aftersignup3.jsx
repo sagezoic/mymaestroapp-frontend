@@ -1,6 +1,42 @@
 import React from 'react'
+import axios from 'axios'
+import { useState } from 'react'
+import config from '../../config'
+import { Link, useHistory } from 'react-router-dom';
+import { toast } from "react-toastify";
+
 
 function Aftersignup3() {
+  const [formData, setFormData] = useState({
+    email:sessionStorage.getItem("regUserEmail"),
+    interest:'',
+  })
+  let history = useHistory();
+  
+  const handleInputChange = (e) => {
+    debugger;
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  }
+  const addIntrest = (e)=>{
+    debugger;
+    e.preventDefault();
+    axios
+    .post(config.serverURL + `/users/interest`,formData)
+    .then((response)=>{
+      console.log(response.data);  
+      toast.success("Welcome to My Maestro Meetup");
+      history.push("/login")
+    })
+    .catch((error) => {
+      console.error("Error in adding interest of user")
+    });
+
+  }
+
   return (
     <div className="container col-md-4 mt-5">
         <div >    
@@ -11,49 +47,49 @@ function Aftersignup3() {
   <form>
         <div>
               <br />
-              <h6>Select your experties</h6>
+              <h5>Select your Interest </h5>
               
               <div class="btn-toolbar d-block" aria-label="Basic checkbox toggle button group">
                 <div className="row">
                   <div className="col-md-4 mb-1">
-                    <input type="radio" className="btn-check" name='experties' id="btnradio1" autoComplete="off" />
+                    <input type="radio" className="btn-check" value="TRAVELLER" name='interest' id="btnradio1" autoComplete="off"  onChange={handleInputChange} />
                     <label className="btn btn-outline-primary w-100" htmlFor="btnradio1">
-                      Civil
+                    TRAVELLER 
                     </label>
                   </div>
                   <div className="col-md-4 mb-1">
-                    <input type="radio" className="btn-check" name='experties' id="btnradio2"  autoComplete="off" />
+                    <input type="radio" className="btn-check" value="SINGER"  name='interest' id="btnradio2"  autoComplete="off" onChange={handleInputChange}/>
                     <label className="btn btn-outline-primary w-100" htmlFor="btnradio2">
-                      Mechnical
+                    SINGER
                     </label>
                   </div>
                   <div className="col-md-4 mb-1">
-                    <input type="radio" className="btn-check" name='experties' id="btnradio3" autoComplete="off" />
+                    <input type="radio" className="btn-check" value="WRITER"  name='interest' id="btnradio3" autoComplete="off" onChange={handleInputChange}/>
                     <label className="btn btn-outline-primary w-100" htmlFor="btnradio3">
-                     Automoblie
+                    WRITER
                     </label>
                   </div>
                   <br /><br /><br />
                   <div className="col-md-4 mb-1">
-                    <input type="radio" className="btn-check" name='experties' id="btnradio4" autoComplete="off" />
+                    <input type="radio" className="btn-check" value="ARTIST"  name='interest' id="btnradio4" autoComplete="off" onChange={handleInputChange} />
                     <label className="btn btn-outline-primary w-100" htmlFor="btnradio4">
-                      Dancing
+                    ARTIST
                     </label>
                   </div>
                   <div className="col-md-4 mb-1">
-                    <input type="radio" className="btn-check" name='experties' id="btnradio5" autoComplete="off" />
+                    <input type="radio" className="btn-check" value="DANCER"  name='interest' id="btnradio5" autoComplete="off"onChange={handleInputChange} />
                     <label className="btn btn-outline-primary w-100" htmlFor="btnradio5">
-                      Singing
+                    DANCER
                     </label>
                   </div>
                   <div className="col-md-4 mb-1">
-                    <input type="radio" className="btn-check" name='experties' id="btnradio6" autoComplete="off" />
+                    <input type="radio" className="btn-check" value="DEVELOPER"  name='interest' id="btnradio6" autoComplete="off" onChange={handleInputChange} />
                     <label className="btn btn-outline-primary w-100" htmlFor="btnradio6">
-                     Sports
-                    </label>
+                     DEVELOPER                     
+                     </label>
                   </div>
                  <br /><br /><br />
-                 <input type="submit" className='btn-custom-sq' />              
+                 <button className="btn btn-primary" onClick={addIntrest}>Submit</button>              
               </div>
               </div>
             </div>

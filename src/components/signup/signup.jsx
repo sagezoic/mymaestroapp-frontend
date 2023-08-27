@@ -56,6 +56,7 @@ function Signup() {
     }
 
     var helper = new XMLHttpRequest();
+    debugger;
       helper.onreadystatechange = ()=>{
           if(helper.readyState ==4 && 
               helper.status == 200)
@@ -64,6 +65,7 @@ function Signup() {
               let response = JSON.parse(helper.responseText);
               console.log(response);
               sessionStorage.setItem("regUserId",response.data.id);
+              sessionStorage.setItem("regUserEmail",response.data.email);
               history.push("/signup/otp");
             }
             else
