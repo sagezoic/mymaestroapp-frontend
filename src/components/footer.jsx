@@ -52,19 +52,19 @@ export class footer extends Component {
                 <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                   {/*<!-- Links -->*/}
                   <h6 className="text-uppercase fw-bold mb-4">
-                    Products
+                    Experts
                   </h6>
                   <p>
-                    <a href="#!" className="text-reset">Angular</a>
+                    <a href="#!" className="text-reset">Writer</a>
                   </p>
                   <p>
-                    <a href="#!" className="text-reset">React</a>
+                    <a href="#!" className="text-reset">Artist</a>
                   </p>
                   <p>
-                    <a href="#!" className="text-reset">Vue</a>
+                    <a href="#!" className="text-reset">Traveller</a>
                   </p>
                   <p>
-                    <a href="#!" className="text-reset">Laravel</a>
+                    <a href="#!" className="text-reset">Singer</a>
                   </p>
                 </div>
                 {/*<!-- Grid column -->*/}
@@ -76,13 +76,13 @@ export class footer extends Component {
                     Useful links
                   </h6>
                   <p>
-                    <a href="#!" className="text-reset">Pricing</a>
+                    <a href="#!" className="text-reset">About Us</a>
                   </p>
                   <p>
                     <a href="#!" className="text-reset">Settings</a>
                   </p>
                   <p>
-                    <a href="#!" className="text-reset">Orders</a>
+                    <a href="#!" className="text-reset">Services</a>
                   </p>
                   <p>
                     <a href="#!" className="text-reset">Help</a>

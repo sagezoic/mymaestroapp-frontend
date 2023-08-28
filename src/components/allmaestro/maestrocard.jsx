@@ -1,6 +1,6 @@
 import React from 'react'
 
-function MaestroCard() {
+function MaestroCard(List) {
   return (
             <div class="card mb-4">
                 <div class="card-body">

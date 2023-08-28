@@ -77,7 +77,6 @@ function Landing() {
   return (
     <div className='main-container'>
         <Navbar Logout={logout} isLoggedIn={isLoggedIn}></Navbar>
-        <br />
         <Switch>
 
           {/* Common Routes */}
