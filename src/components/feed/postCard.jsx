@@ -1,9 +1,12 @@
 import React, { useState,useEffect } from "react";
 import config from "../../config";
 import axios from "axios";
+import { Dropdown } from 'react-bootstrap';
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { toast } from "react-toastify";
 
 function PostCard({Feed, likePost}) {
-
+  const history = useHistory();
   const [postUser, setPostUser] = useState();
   let userId = Feed.userId;
 
@@ -29,6 +32,7 @@ function PostCard({Feed, likePost}) {
       });
   };
 
+ 
   const calcNoOfDays=(timeStamp)=>{
     debugger;
     // Convert the timestamp string to a Date object
@@ -55,8 +59,31 @@ function PostCard({Feed, likePost}) {
     
   }
 
+  const deletePost=() =>{
+    debugger;
+    axios
+      .delete(config.serverURL + `/post/deletepost?userId=${sessionStorage.getItem("userId")}&postId=${Feed.id}`)
+      .then((response)=>{
+        console.log(response);
+        toast.success("Post is Deleted")
+        debugger;
+        if(sessionStorage.getItem("role")==="ROLE_EXPLORER")
+          history.push("/explorer/feed")
+        else 
+          history.push("/maestro/feed");
+      })
+      .catch((error)=>{
+        console.log(error); 
+      });
+}
+
+  const editPost=() =>{
+
+  }
+  debugger;
   return (
     <div className="card mb-3">
+    
       <div className="card-header bg-white border-0">
       <div className="row">
       <div className="col-md-1 me-3">
@@ -115,6 +142,21 @@ function PostCard({Feed, likePost}) {
         </div>
       </div>
       <div>
+    
+     <div className="float-md-end">
+          
+        <Dropdown>
+            <Dropdown.Toggle variant="link" id="dropdown-basic" style={{textDecoration:"none"}}>
+              &#8230; {/* Three-dot ellipsis */}
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={editPost}>Edit</Dropdown.Item>
+              <Dropdown.Item  onClick={deletePost}>Delete</Dropdown.Item>
+            </Dropdown.Menu>
+        </Dropdown>
+      
+      </div>
         <p
           className="card-text ms-3"
           style={{
@@ -133,6 +175,7 @@ function PostCard({Feed, likePost}) {
             alt=""
           />
         </div>
+        
         <span className="ms-3 mt-5">
           <img
             src="https://static-exp1.licdn.com/sc/h/d310t2g24pvdy4pt1jkedo4yb"
