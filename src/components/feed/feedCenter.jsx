@@ -2,7 +2,7 @@ import React from "react";
 import AddPost from "./addPostCard";
 import PostCard from "./postCard";
 
-function FeedCenter({ Feeds, LikePost }) {
+function FeedCenter({ Feeds, LikePost, Like}) {
   debugger;
   return (
     <div
@@ -15,7 +15,7 @@ function FeedCenter({ Feeds, LikePost }) {
       </div>
       {Feeds.map((feed)=>{
         debugger;
-          return (<PostCard Feed={feed} likePost={LikePost} key={feed.id}></PostCard>)
+          return (<PostCard Feed={feed} likePost={LikePost} like={Like} key={feed.id}></PostCard>)
         }
       )}
     </div>

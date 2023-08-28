@@ -5,7 +5,7 @@ import { Dropdown } from 'react-bootstrap';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { toast } from "react-toastify";
 
-function PostCard({Feed, likePost}) {
+function PostCard({Feed, likePost, like}) {
   const history = useHistory();
   const [postUser, setPostUser] = useState();
   let userId = Feed.userId;
@@ -205,7 +205,7 @@ function PostCard({Feed, likePost}) {
         </span>
         <div className="card-footer bg-white mt-1">
           <span>
-            <button className="ref btn btn-light btn-sm" onClick={()=>{likePost(Feed.id)}}>
+            <button className={`ref btn btn-light btn-sm ${like?'btn-success' : 'btn-light'}`} onClick={()=>{likePost(Feed.id)}}>
               <i className="far fa-thumbs-up fa-md" style={{ fontSize: "1.2rem" }}>
                 <span className="ms-2 mediatext">Like</span>
               </i>

@@ -85,6 +85,7 @@ function Feed() {
       .post(config.serverURL + `/likepost/add`,formData)
       .then((response) => {
         console.log(response);
+        setLike(true);
       })
       .catch((error) => {
         console.log(error);
@@ -104,7 +105,7 @@ function Feed() {
           <FeedLeft />
 
           {/*<!-- feed panel -->*/}
-          <FeedCenter Feeds={feeds} LikePost={likePost} />
+          <FeedCenter Feeds={feeds} LikePost={likePost} Like={like} />
 
           {/*<!-- right panel -->*/}
           <FeedRight />
