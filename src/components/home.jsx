@@ -3,7 +3,7 @@ import Carousel from './carousel';
 
 function Home() {
   return (
-    <div className='container'>
+    <div className='container col-md-12' >
         <div class="jumbotron" style={{background: "radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)"}}>
           <h1>
                 Maestro Homepage!
@@ -15,6 +15,7 @@ function Home() {
         </div>
         <div className='classHero h-80'>
           <Carousel/>
+
         </div>
     </div>
   )
