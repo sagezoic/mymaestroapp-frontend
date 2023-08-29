@@ -19,7 +19,7 @@ const Profile = () => {
     firstName: "",
     lastName: "",
     dp: "",
-    expertise: "",
+    interest: "",
     socialMediaLink: "",
   });
 
@@ -156,6 +156,7 @@ const Profile = () => {
                     className="form-control"
                     rows="5"
                     placeholder="Write a brief bio about yourself"
+                    name="bio"
                     value={userProfile.bio}
                     onChange={handleChange}
                   ></textarea>
@@ -228,13 +229,13 @@ const Profile = () => {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="userRole" className="form-label">
-                  <b>Expertise</b>
+                  <b>Interest</b>
                   </label>
                   <select
                     className="form-select"
-                    id="expertise"
-                    name="expertise"
-                    value={userProfile.expertise}
+                    id="interest"
+                    name="interest"
+                    value={userProfile.interest}
                     onChange={handleChange}
                   >
                     <option value="">Select</option>

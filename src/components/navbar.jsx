@@ -23,7 +23,7 @@ function Navbar({ Logout, isLoggedIn }) {
   }, [user]);
 
   console.log(dpUrl);
-
+  debugger;
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark"
@@ -111,14 +111,16 @@ function Navbar({ Logout, isLoggedIn }) {
                   <li>
                     <hr className="dropdown-divider" />
                   </li>
-                  <li>
+                  
+                  {sessionStorage.getItem("role")==="ROLE_EXPLORER" && (<li>
                     <Link
+
                       to={sessionStorage.getItem("role")==="ROLE_EXPLORER"?"/explorer/dashboard/services":"/maestro/dashboard/services"}
                       className="dropdown-item"
                     >
                       Services
                     </Link>
-                  </li>
+                  </li>)}
                   <li>
                     <hr className="dropdown-divider" />
                   </li>

@@ -66,11 +66,11 @@ function Signup() {
               console.log(response);
               sessionStorage.setItem("regUserId",response.data.id);
               sessionStorage.setItem("regUserEmail",response.data.email);
-              history.push("/signup/otp");
+              history.push("/signup/aftersignup1");
             }
             else
             {
-              history.push("/signup/otp");
+              history.push("/signup");
               ShowMessage("Something went wrong!");
             }
       }
