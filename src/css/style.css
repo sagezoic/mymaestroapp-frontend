@@ -49,13 +49,6 @@
   .btn-check {
     margin-right: 10px;
   }
-
-  input.searche {
-    height: 36px;
-    max-width: 500px;
-    background-color: #eef3f8;
-    border: 0;
-  }
   
   input.searche::placeholder {
     font-size: 14px;
