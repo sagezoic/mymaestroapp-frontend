@@ -11,7 +11,6 @@ function EditService() {
   const [selectedService, setSelectedService] = useState("");
   const [serviceList, setServiceList] = useState();
 
-  //const result = null;
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const serviceId = queryParams.get("id");

@@ -63,10 +63,8 @@ function AllServices() {
   //   );
    }
 
-  function saveClick(id, logo, company, position, location, posted) {
-    window.localStorage.setItem(
-      "",
-      JSON.stringify(id, logo, company, position, location, posted)
+  function saveClick(service) {
+    window.localStorage.setItem("savedService",service
     );
     window.localStorage.setItem("allserviceList", ServiceData);
     console.log(ServiceData);
@@ -137,34 +135,19 @@ function AllServices() {
                           <h4>{service.firstName+" "+service.lastName}</h4>
                           <h3>{service.serviceTitle}</h3>
                           <div className="category">
-                            <b>Service Category:</b><p>{service.serviceCategory}</p>
-                            <b>Amount:</b> <p>₹ {service.priceToken}</p>
+                            <p><b>Service Category:&nbsp;</b> {service.serviceCategory}</p>
+                            <p><b>Amount:&nbsp;</b> ₹{service.priceToken}</p>
                           </div>
                           <div>{service.description}</div>
                         </div>
                       </div>
                       <div className="service-button">
-                          <button
+                      <Link to={`/explorer/reqservice?id=${service.id}`}><button
                             className={`btn btn-dark btn-custom-sq me-4}`}
                             onClick={() => serviceRequest()}
                           >
-                            <Link to="/explorer/reqservice" style={{textDecoration: "none"}}>Avail Service</Link>
-                          </button>
-                      
-                        <div className="save-button">
-                          <Link
-                            to="/Jobs"
-                            onClick={() => {
-                              saveClick(
-                                {
-                                  service
-                                },
-                                setActive(!active)
-                              );
-                            }}
-                          >
-                          </Link>
-                        </div>
+                            Avail Service
+                          </button></Link>
                       </div>
                     </div>
                   </div>
