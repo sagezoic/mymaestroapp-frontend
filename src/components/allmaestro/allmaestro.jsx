@@ -28,11 +28,12 @@ function AllMaestro() {
       
     const getMaestro = () => {
         axios
-          .get(config.serverURL + `/users/getallmaestro`)
+          .get(config.serverURL +`/users/getallmeastro`)
           .then((response) => {
             debugger;
             console.log(response);
             setMaestroList(response.data.data);
+            debugger;
             console.log(maestroList);
             //debugger;
           })
@@ -41,19 +42,15 @@ function AllMaestro() {
           });
       };
 
-    
-    
-
-
   return (
     <div className="container">
         <div className="row container-fluid row-cols-1 row-cols-md-3">
             <div className='col'>
             {maestroList.map((list) =>{
+                debugger;
                 return(
-                    <MaestroCard>
-                        List:{list}
-                        key={list.id}
+                    <MaestroCard List={list}
+                    key={list.id}> 
                     </MaestroCard>
                 )
             }
