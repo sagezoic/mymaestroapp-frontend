@@ -80,12 +80,12 @@ function Navbar({ Logout, isLoggedIn }) {
                 </Link>
               </li>
             )}
-            {isLoggedIn && (
-              <li className="nav-item">
+            {isLoggedIn && sessionStorage.getItem("role")==="ROLE_EXPLORER" && (
+              (<li className="nav-item">
                 <Link to="/explorer/allservices" className="nav-link">
                   Services
                 </Link>
-              </li>
+              </li>)
             )}
 
             {isLoggedIn && (
@@ -112,7 +112,7 @@ function Navbar({ Logout, isLoggedIn }) {
                     <hr className="dropdown-divider" />
                   </li>
                   
-                  {sessionStorage.getItem("role")==="ROLE_EXPLORER" && (<li>
+                  {(<li>
                     <Link
 
                       to={sessionStorage.getItem("role")==="ROLE_EXPLORER"?"/explorer/dashboard/services":"/maestro/dashboard/services"}
