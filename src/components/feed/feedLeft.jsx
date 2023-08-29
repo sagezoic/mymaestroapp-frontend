@@ -45,8 +45,7 @@ function FeedLeft() {
         <div className="card-body">
           <p className="card-title text-center mt-4 header">
             <a
-              href="https://www.linkedin.com/in/cengizcmataraci/"
-              target="_blank"
+              href="#"
               style={{ color: "#212529" }}
             >
                {user!=null?user.userDetails.firstName+" "+user.userDetails.lastName:""}

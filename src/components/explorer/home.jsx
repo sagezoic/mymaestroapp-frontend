@@ -74,9 +74,9 @@ function Home() {
 
   return (
     <div className="px-3">
-      <div className="card mt-4 ms-3 " style={{ backgroundColor: "#FCFCFE" }}>
+      <div className="card mt-4 ms-3" style={{ backgroundColor: "#FCFCFE" }}>
         <div className="container-fluid">
-          <div className="row g-3 my-2">
+          <div className="row g-3 my-2 d-flex justify-content-around">
             <div className="col-md-3">
               <div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                 <div>
@@ -106,15 +106,6 @@ function Home() {
                 <i className="bi bi-wallet p-3 fs-1"></i>
               </div>
             </div>
-            <div className="col-md-3">
-              <div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                <div>
-                  <h3>10%</h3>
-                  <p className="fs-5">Increase</p>
-                </div>
-                <i className="bi bi-graph-up-arrow p-3 fs-1"></i>
-              </div>
-            </div>
           </div>
 
           <table class="table caption-top bg-white rounded mt-2 border">
@@ -133,7 +124,8 @@ function Home() {
             </thead>
             <tbody>
             {serviceRequestList.length > 0 ? (
-            serviceRequestList.map((list, index) => (
+            serviceRequestList.map((list, index) => {
+              debugger;
               <tr key={index}>
                 <td>{index+1}</td>
                 <td>{list.firstName+" "+list.lastName}</td>
@@ -143,7 +135,7 @@ function Home() {
                 <td>{list.description}</td>
                 <td>{list.amount}</td>
               </tr>
-            ))
+            })
           ) : (
             <tr>
               <td colSpan="4">Loading...</td>
