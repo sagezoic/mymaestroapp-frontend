@@ -118,11 +118,13 @@ function Login({ isLoggedIn, handleLogin }) {
               }
             }
           } else {
+            debugger;
             toast.error("Invalid email or password");
             setCredentials({ email: "", password: "" });
           }
         })
         .catch((error) => {
+          toast.error("Invalid email or password");
           console.log("error");
           console.log(error);
         });
