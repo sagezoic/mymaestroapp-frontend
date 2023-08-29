@@ -28,14 +28,9 @@ import { useUserContext } from "../context/userContext";
 
 function Feed() {
   const [feeds, setFeeds] = useState([]);
-  const [like,setLike] = useState([]);
   const { updateUser } = useUserContext();
   const userId = sessionStorage.getItem("userId");
   const token = sessionStorage.getItem("jwt");
-  const [formData, setFormData] = useState({
-    postId:'',
-    userId: sessionStorage.getItem('userId'),
-  })
 
   useEffect(() => {
     //getFeeds().then((data) => setFeeds(data));
@@ -74,25 +69,6 @@ function Feed() {
       });
   };
 
-  const likePost = (postId) => {
-    debugger;
-    console.log(postId);
-    formData.postId=postId;
-    // const formDataUpload = new FormData();
-    // formDataUpload.append("userId", formData.userId);
-    // formDataUpload.append("postId",formData.postId);
-    axios
-      .post(config.serverURL + `/likepost/add`,formData)
-      .then((response) => {
-        console.log(response);
-        setLike(true);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-  };
-
   return (
     <div>
       {/*feeds.map((feed) => (
@@ -105,7 +81,7 @@ function Feed() {
           <FeedLeft />
 
           {/*<!-- feed panel -->*/}
-          <FeedCenter Feeds={feeds} LikePost={likePost} Like={like} />
+          <FeedCenter Feeds={feeds}  Refresh={getAllPosts}/>
 
           {/*<!-- right panel -->*/}
           <FeedRight />

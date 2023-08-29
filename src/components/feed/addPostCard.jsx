@@ -6,15 +6,16 @@ import config from "../../config";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
-function AddPost() {
+function AddPost({refresh}) {
   const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [formData, setFormData] = useState({
-    postType: 'IMAGE',
-    captionText: '',
-    userId: sessionStorage.getItem('userId'),
-  })
+    postType: "IMAGE",
+    captionText: "",
+    userId: sessionStorage.getItem("userId"),
+  });
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setSelectedImage(file);
@@ -26,7 +27,7 @@ function AddPost() {
       ...prevProfile,
       [name]: value,
     }));
-    console.log(formData)
+    console.log(formData);
   };
 
   function toggleModal() {
@@ -49,13 +50,16 @@ function AddPost() {
         .then((response) => {
           debugger;
           console.log("Image uploaded successfully:", response.data);
-          toast.success("Post Uploaded")
-          if(sessionStorage.getItem("role")==="ROLE_EXPLORER")
-          history.push("/explorer/feed")
-        else 
-          history.push("/maestro/feed");
-
-          debugger;
+          toast.success("Post Uploaded");
+          if (sessionStorage.getItem("role") === "ROLE_EXPLORER") {
+            debugger;
+            history.push("/explorer/feed");
+          } else {
+            history.push("/maestro/feed");
+            debugger;
+          }
+          toggleModal();
+          refresh();
           // Update the selectedService with the new image URL
         })
         .catch((error) => {
@@ -64,13 +68,10 @@ function AddPost() {
     }
   };
 
-
   const handleSubmit = (e) => {
-
     e.preventDefault();
     // Perform your API call or update logic here
     handleUploadImage();
-
   };
   return (
     <div className="card">
@@ -78,12 +79,17 @@ function AddPost() {
         <input
           type="text"
           className="form-control content"
-          name="captionText" value={formData.captionText} onChange={handleChange}
+          name="captionText"
+          value={formData.captionText}
+          onChange={handleChange}
           placeholder="             Share your thoughts..."
         />
         <div className="d-flex justify-content-center">
           <span>
-            <button className="mediatext btn btn-light mt-3 ms-4" onClick={toggleModal}>
+            <button
+              className="mediatext btn btn-light mt-3 ms-4"
+              onClick={toggleModal}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -96,7 +102,6 @@ function AddPost() {
                 <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm1 13a1 1 0 01-.29.71L16 14l-2 2-6-6-4 4V7a1 1 0 011-1h14a1 1 0 011 1zm-2-7a2 2 0 11-2-2 2 2 0 012 2z"></path>
               </svg>
               <span className="ms-1 mediatext">Image</span>
-
             </button>
             <Modal
               isOpen={isOpen}
@@ -109,17 +114,40 @@ function AddPost() {
               <div>Upload Post</div>
               <div>
                 <form onSubmit={handleSubmit}>
-                  <label for="formFile" class="form-label"><b>Caption Text</b></label>
-                  <input class="form-control mb-3" type="text" name="captionText" value={formData.captionText} onChange={handleChange} />
-                  <label for="formFile" class="form-label"><b>Upload Post</b></label>
-                  <input class="form-control mb-3" type="file" accept="image/*" name="imageFile" onChange={handleImageChange} />
+                  <label for="formFile" class="form-label">
+                    <b>Caption Text</b>
+                  </label>
+                  <input
+                    class="form-control mb-3"
+                    type="text"
+                    name="captionText"
+                    value={formData.captionText}
+                    onChange={handleChange}
+                  />
+                  <label for="formFile" class="form-label">
+                    <b>Upload Post</b>
+                  </label>
+                  <input
+                    class="form-control mb-3"
+                    type="file"
+                    accept="image/*"
+                    name="imageFile"
+                    onChange={handleImageChange}
+                  />
                   <div className="d-flex justify-content-evenly">
-                    <button className="btn btn-primary mb-4">Save Changes</button>
-                    <button type="button" className="btn btn-danger mb-4" onClick={toggleModal}>Cancel</button>
+                    <button className="btn btn-primary mb-4">
+                      Save Changes
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-danger mb-4"
+                      onClick={toggleModal}
+                    >
+                      Cancel
+                    </button>
                   </div>
                 </form>
               </div>
-
             </Modal>
           </span>
           <span>
